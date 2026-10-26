@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>DOS – Deutsch A1.2</title><style>
+:root{--bg:#f6f7fb;--c:#fff;--t:#1b2433;--b:#dfe3ee;--pr:#0b3d91;--m:#1e66d0;--n:#1f9d55;--f:#d62d2d;--p:#c99700}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#10141c;--c:#1a2130;--t:#e8ecf5;--b:#2c3548;--pr:#6ea2ff;--m:#6ea8ff;--n:#4cd08a;--f:#ff7b7b;--p:#f2c94c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font:16px/1.5 system-ui,'Segoe UI',Tahoma,sans-serif;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+header{background:var(--pr);color:#fff;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.logo{width:42px;height:42px;border-radius:50%;background:#fff;color:#0b3d91;font-weight:900;display:grid;place-items:center;border:3px solid #e0a800;object-fit:contain;padding:3px;width:50px;height:50px}
+header h1{font-size:15px;margin:0;flex:1}header small{opacity:.85;display:block;font-weight:400}
+select,button{font:inherit;border-radius:8px;border:1px solid var(--b);padding:6px 10px;background:var(--c);color:var(--t);cursor:pointer}
+.ls,.tabs{display:flex;gap:6px;overflow-x:auto;padding:8px 10px}.ls button,.tabs button{white-space:nowrap}
+.on{background:var(--pr)!important;color:#fff!important}.off{opacity:.45}
+main{max-width:860px;margin:auto;padding:8px 12px 40px}
+.card{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:10px 12px;margin:8px 0}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>.g{flex:1;min-width:140px}
+.sp{cursor:pointer;border:0;background:none;font-size:18px;padding:0 4px}
+.m{color:var(--m)}.n{color:var(--n)}.f{color:var(--f)}.p{color:var(--p)}b{font-weight:700}
+.tr{color:#6b7587;font-size:14px}table{border-collapse:collapse;width:100%}td,th{border:1px solid var(--b);padding:6px;text-align:center}
+h2{font-size:17px;margin:14px 0 4px;color:var(--pr)}.opt{display:block;width:100%;margin:5px 0;text-align:start}
+.ok{background:#1f9d55!important;color:#fff!important}.no{background:#d62d2d!important;color:#fff!important}
+input{font:inherit;padding:8px;border:1px solid var(--b);border-radius:8px;background:var(--c);color:var(--t);width:60%}
+video,audio{width:100%;border-radius:10px;margin:4px 0}
+.bl{position:fixed;bottom:-80px;font-size:42px;pointer-events:none;animation:up 3s ease-in forwards;z-index:9}@keyframes up{to{transform:translateY(-120vh) rotate(15deg)}}
+</style></head><body>
+<header><img class="logo" alt="DOS" src="data:image/jpeg;base64,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"><h1>DOS – Drei Online Spezialisten<small>Deutsch A1.2 · Menschen</small></h1>
+<select id="lg" onchange="L=this.value;R()"><option value="ar">العربية</option><option value="en">English</option></select>
+<button onclick="TR=!TR;R()">🌐 Übersetzung</button></header>
+<div class="ls" id="ls"></div><div class="tabs" id="tb"></div><main id="c"></main>
+<script>
+let LS=1;const AUD='file:///C:/Users/dos-a/OneDrive/Desktop/Ahmed%20Maher/Liberay/MenA1kb/',VID='file:///C:/Users/dos-a/OneDrive/Desktop/Ahmed%20Maher/Liberay/media/';
+let L='ar',TR=true,S='w',QI=0,SC=0,Q=[];
+const A={m:'der',n:'das',f:'die',p:'die'};
+// Nomen: Genus|Wort|Plural|ar|en
+const N=`m|Bahnhof|Bahnhöfe|محطة القطار|station
+m|Dom|Dome|كاتدرائية|cathedral
+f|Brücke|Brücken|جسر|bridge
+f|Ampel|Ampeln|إشارة مرور|traffic light
+f|Straße|Straßen|شارع|street
+n|Hotel|Hotels|فندق|hotel
+n|Restaurant|Restaurants|مطعم|restaurant
+n|Café|Cafés|مقهى|café
+f|Bank|Banken|بنك|bank
+n|Zentrum|Zentren|مركز|centre
+m|Stadtplan|Stadtpläne|خريطة المدينة|city map
+m|Kilometer|Kilometer|كيلومتر|kilometre
+f|Ecke|Ecken|زاوية|corner
+m|Park|Parks|حديقة|park
+f|Apotheke|Apotheken|صيدلية|pharmacy
+m|Supermarkt|Supermärkte|سوبرماركت|supermarket
+f|Schule|Schulen|مدرسة|school
+n|Kino|Kinos|سينما|cinema
+n|Haus|Häuser|منزل|house
+m|Baum|Bäume|شجرة|tree
+m|Platz|Plätze|ميدان|square
+f|Haltestelle|Haltestellen|محطة (حافلة)|stop
+f|Wegbeschreibung|Wegbeschreibungen|وصف الطريق|directions
+n|Erdgeschoss|Erdgeschosse|الطابق الأرضي|ground floor
+m|Stock|Stöcke|طابق|floor
+m|Keller|Keller|قبو|cellar
+f|Garage|Garagen|جراج|garage
+f|Blume|Blumen|زهرة|flower
+n|Bad|Bäder|حمّام|bathroom
+f|Toilette|Toiletten|مرحاض|toilet
+m|Flur|Flure|ممر|hallway
+f|Küche|Küchen|مطبخ|kitchen
+n|Schlafzimmer|Schlafzimmer|غرفة نوم|bedroom
+n|Kinderzimmer|Kinderzimmer|غرفة أطفال|children's room
+n|Arbeitszimmer|Arbeitszimmer|غرفة عمل|study
+m|Blick|Blicke|نظرة|view
+m|Würfel|Würfel|مكعب|cube
+f|Pyramide|Pyramiden|هرم|pyramid
+n|Gedächtnis|Gedächtnisse|ذاكرة|memory
+m|Moment|Momente|لحظة|moment`.split('\n').map(x=>x.split('|'));
+// Verben: Infinitiv|Perfekt|ar|en
+const V=`abbiegen|ist abgebogen|انعطف|turn
+fahren|ist gefahren|قاد|drive
+wenden|hat gewendet|استدار|turn around
+suchen|hat gesucht|بحث|search
+finden|hat gefunden|وجد|find
+kennen|hat gekannt|عرف|know
+helfen|hat geholfen|ساعد|help
+fragen|hat gefragt|سأل|ask
+gehen|ist gegangen|ذهب مشيا|go
+kommen|ist gekommen|جاء|come
+sehen|hat gesehen|رأى|see
+bauen|hat gebaut|بنى|build
+stimmen|hat gestimmt|صحّ|be correct
+eintragen|hat eingetragen|دوّن|enter
+vorbeifahren|ist vorbeigefahren|مرّ بجانب|drive past
+zurückfahren|ist zurückgefahren|رجع بالسيارة|drive back
+weiterfahren|ist weitergefahren|تابع السير|drive on
+anmachen|hat angemacht|شغّل|switch on
+beschreiben|hat beschrieben|وصف|describe
+danken|hat gedankt|شكر|thank
+durchkommen|ist durchgekommen|مرّ عبر|come through
+liegen|hat gelegen|يقع|lie
+stehen|hat gestanden|يقف|stand
+wohnen|hat gewohnt|سكن|live
+bitten|hat gebeten|طلب|ask for
+laufen|ist gelaufen|ركض / مشى|run
+nehmen|hat genommen|أخذ|take
+brauchen|hat gebraucht|احتاج|need
+warten|hat gewartet|انتظر|wait
+antworten|hat geantwortet|أجاب|answer
+erklären|hat erklärt|شرح|explain
+zeigen|hat gezeigt|أظهر|show
+hören|hat gehört|سمع|hear
+sagen|hat gesagt|قال|say
+parken|hat geparkt|ركن|park
+überqueren|hat überquert|عبر|cross
+ankommen|ist angekommen|وصل|arrive
+aussteigen|ist ausgestiegen|نزل|get out
+einsteigen|ist eingestiegen|ركب|get in
+besuchen|hat besucht|زار|visit`.split('\n').map(x=>x.split('|'));
+// Adjektive: Wort|ar|en
+const J=`links|يسارا|left
+rechts|يمينا|right
+geradeaus|إلى الأمام|straight on
+nah|قريب|near
+weit|بعيد|far
+fremd|غريب|strange
+höflich|مهذب|polite
+richtig|صحيح|right
+falsch|خاطئ|wrong
+nett|لطيف|nice
+groß|كبير|big
+klein|صغير|small
+neu|جديد|new
+alt|قديم|old
+schön|جميل|beautiful
+hell|مضيء|bright
+dunkel|مظلم|dark
+lang|طويل|long
+kurz|قصير|short
+laut|عالٍ (صوت)|loud
+leise|هادئ (صوت)|quiet
+ruhig|هادئ|calm
+hoch|مرتفع|high
+tief|عميق|deep
+breit|عريض|wide
+schmal|ضيّق|narrow
+teuer|غالٍ|expensive
+billig|رخيص|cheap
+modern|عصري|modern
+gemütlich|مريح|cosy`.split('\n').map(x=>x.split('|'));
+// Dialog: Frage|Antwort|ar Frage|ar Antwort
+const D=`Entschuldigung, wo ist der Bahnhof?|Der Bahnhof ist neben dem Dom.|المعذرة، أين محطة القطار؟|المحطة بجانب الكاتدرائية.
+Kennen Sie das Hotel Maritim?|Ja, das Hotel ist im Zentrum.|هل تعرف فندق ماريتيم؟|نعم، الفندق في المركز.
+Können Sie mir helfen?|Ja, gern. Was suchen Sie?|هل تساعدني؟|نعم بكل سرور. عمّ تبحث؟
+Ich suche die Post. Wo ist sie?|Die Post ist hinter der Bank.|أبحث عن البريد. أين هو؟|البريد خلف البنك.
+Wie komme ich zum Café Schiffer?|Fahren Sie geradeaus und dann links.|كيف أصل إلى مقهى شيفر؟|سِر مباشرة ثم يسارا.
+Ist das weit von hier?|Nein, das ist in der Nähe.|هل هو بعيد من هنا؟|لا، إنه قريب.
+Wo ist die Apotheke?|Sie ist vor dem Supermarkt.|أين الصيدلية؟|إنها أمام السوبرماركت.
+Entschuldigung, sind Sie von hier?|Nein, ich bin auch fremd hier.|المعذرة، هل أنت من هنا؟|لا، أنا غريب هنا أيضا.
+Wo ist die Ampel?|Die Ampel ist an der Ecke.|أين إشارة المرور؟|الإشارة عند الزاوية.
+Vielen Dank für Ihre Hilfe!|Bitte, gern. Kein Problem!|شكرا جزيلا على مساعدتك!|عفوا، بكل سرور. لا مشكلة!
+Wo ist die Haltestelle?|Sie ist auf dem Platz.|أين المحطة؟|إنها في الميدان.
+Wie weit ist es bis zum Park?|Nur zwei Kilometer.|كم يبعد الحديقة؟|كيلومتران فقط.
+Wohnen Sie im Erdgeschoss?|Nein, ich wohne im ersten Stock.|هل تسكن في الطابق الأرضي؟|لا، أسكن في الطابق الأول.
+Wo ist das Bad?|Das Bad ist neben dem Schlafzimmer.|أين الحمّام؟|بجانب غرفة النوم.
+Haben Sie eine Garage?|Ja, die Garage ist hinter dem Haus.|هل لديك جراج؟|نعم، خلف المنزل.
+Was steht im Keller?|Im Keller steht ein Fahrrad.|ماذا يوجد في القبو؟|في القبو دراجة.
+Wie ist die Wohnung?|Sie ist hell und gemütlich.|كيف الشقة؟|مضيئة ومريحة.
+Ist die Küche groß?|Nein, sie ist ziemlich klein.|هل المطبخ كبير؟|لا، إنه صغير نوعا ما.
+Wo ist das Kinderzimmer?|Es ist am Flur.|أين غرفة الأطفال؟|على الممر.
+Haben Sie einen Stadtplan?|Ja, hier bitte.|هل لديك خريطة المدينة؟|نعم، تفضل.
+Ist die Straße breit?|Nein, sie ist schmal.|هل الشارع عريض؟|لا، إنه ضيّق.
+Was sehen Sie auf dem Bild?|Ich sehe eine Pyramide und einen Würfel.|ماذا ترى في الصورة؟|أرى هرما ومكعبا.
+Wo steht der Baum?|Er steht vor der Schule.|أين الشجرة؟|أمام المدرسة.
+Haben Sie einen Moment Zeit?|Ja, natürlich.|هل لديك لحظة؟|نعم، بالطبع.
+Steigen Sie hier aus?|Nein, ich steige am Bahnhof aus.|هل تنزل هنا؟|لا، أنزل عند المحطة.
+Wie ist das Café?|Es ist ruhig und schön.|كيف المقهى؟|هادئ وجميل.
+Ist das Hotel teuer?|Nein, es ist billig.|هل الفندق غالٍ؟|لا، رخيص.
+Können Sie das erklären?|Ja, ich zeige es Ihnen.|هل تشرح هذا؟|نعم، سأريك.
+Wie ist Ihr Gedächtnis?|Es ist gut, aber nicht perfekt.|كيف ذاكرتك؟|جيدة لكن ليست مثالية.
+Wo parken wir?|Wir parken in der Garage.|أين نركن؟|نركن في الجراج.`.split('\n').map(x=>x.split('|'));
+// Sätze: Satz mit {Lücke}|ar
+const T=`Wir suchen das Hotel Maritim.|نحن نبحث عن فندق ماريتيم.
+Das Hotel ist {im} Zentrum.|الفندق في المركز.
+Es liegt zwischen {dem} Bahnhof und dem Dom.|يقع بين المحطة والكاتدرائية.
+An der {Ampel} fahren Sie nach links.|عند الإشارة انعطف يسارا.
+Vor dem Restaurant fahren Sie nach {rechts}.|أمام المطعم انعطف يمينا.
+Sie kommen unter {einer} Brücke durch.|تمرّ تحت جسر.
+Die Post ist {hinter} der Bank.|البريد خلف البنك.
+Ich bin nicht von {hier}.|أنا لست من هنا.
+Fahren Sie zwei Kilometer {geradeaus}.|سِر كيلومترين إلى الأمام.
+Das ist in der {Nähe} vom Bahnhof.|هذا قريب من المحطة.
+Die Bank ist {neben} dem Kino.|البنك بجانب السينما.
+Der Park liegt {zwischen} der Schule und dem Hotel.|الحديقة بين المدرسة والفندق.
+Wir wohnen im {ersten} Stock.|نسكن في الطابق الأول.
+Das Bad ist {links} vom Flur.|الحمّام على يسار الممر.
+Die Küche ist {hell} und groß.|المطبخ مضيء وكبير.
+Im {Keller} steht ein Fahrrad.|في القبو دراجة.
+Die Garage ist {hinter} dem Haus.|الجراج خلف المنزل.
+Ein Baum steht {vor} der Schule.|شجرة أمام المدرسة.
+Sie gehen {über} die Brücke.|تعبر الجسر.
+Der Stab ist {auf} dem Würfel.|العصا على المكعب.
+Wir fahren {am} Café vorbei.|نمرّ بجانب المقهى.
+Bitte {wenden} Sie hier.|من فضلك استدر هنا.
+Ich {suche} die Apotheke.|أبحث عن الصيدلية.
+Können Sie mir {helfen}?|هل تساعدني؟|
+Entschuldigung, eine {Frage} bitte!|المعذرة، سؤال من فضلك!
+Das Kinderzimmer ist {klein}.|غرفة الأطفال صغيرة.
+Der Supermarkt ist {weit} von hier.|السوبرماركت بعيد من هنا.
+Ich bin auch {fremd} hier.|أنا غريب هنا أيضا.
+Das Zentrum ist {nah}.|المركز قريب.
+Vielen Dank, Sie sind sehr {nett}!|شكرا جزيلا، أنت لطيف جدا!`.split('\n').map(x=>x.split('|'));
+const XN=`Der Bahnhof ist sehr groß.
+Der Dom steht in Köln.
+Die Brücke ist alt.
+Die Ampel ist rot.
+Die Straße ist lang.
+Das Hotel hat ein Restaurant.
+Das Restaurant öffnet um zwölf Uhr.
+Ich trinke einen Tee im Café.
+Die Bank schließt um vier Uhr.
+Das Zentrum ist schön.
+Ich brauche einen Stadtplan.
+Ein Kilometer hat tausend Meter.
+Die Ecke ist dort.
+Wir spielen im Park Fußball.
+Die Apotheke ist heute offen.
+Im Supermarkt kaufe ich Brot.
+Meine Schwester geht in die Schule.
+Wir sehen einen Film im Kino.
+Das Haus hat einen Garten.
+Der Baum ist sehr hoch.
+Der Platz ist voll.
+Die Haltestelle ist hier.
+Die Wegbeschreibung ist einfach.
+Das Erdgeschoss hat zwei Zimmer.
+Mein Büro ist im dritten Stock.
+Der Keller ist dunkel.
+Das Auto steht in der Garage.
+Die Blume ist gelb.
+Das Bad hat eine Dusche.
+Die Toilette ist links.
+Der Flur ist schmal.
+Ich koche in der Küche.
+Ich schlafe im Schlafzimmer.
+Das Kinderzimmer ist bunt.
+Ich lese im Arbeitszimmer.
+Der Blick ist wunderbar.
+Der Würfel ist rot.
+Die Pyramide ist sehr alt.
+Mein Gedächtnis ist gut.
+Einen Moment, bitte!`.split('\n'),XV=`Biegen Sie an der Ecke ab.
+Ich fahre mit dem Bus.
+Der Fahrer wendet das Auto.
+Ich suche meinen Schlüssel.
+Ich finde das Buch nicht.
+Kennst du diese Frau?
+Mein Bruder hilft mir.
+Ich frage den Lehrer.
+Wir gehen zu Fuß.
+Er kommt aus Ägypten.
+Ich sehe einen Vogel.
+Sie bauen ein neues Haus.
+Das stimmt!
+Ich trage den Namen ein.
+Der Bus fährt am Kino vorbei.
+Wir fahren nach Hause zurück.
+Fahren Sie bitte weiter.
+Mach bitte das Licht an!
+Kannst du den Weg beschreiben?
+Ich danke dir für das Geschenk.
+Der Bus kommt nicht durch.
+Das Buch liegt auf dem Tisch.
+Die Lampe steht neben dem Bett.
+Er wohnt in Kairo.
+Ich bitte um Hilfe.
+Das Kind läuft schnell.
+Ich nehme einen Kaffee.
+Ich brauche Wasser.
+Wir warten auf den Zug.
+Er antwortet sofort.
+Der Lehrer erklärt die Regel.
+Ich zeige dir mein Foto.
+Hörst du die Musik?
+Was sagst du?
+Wir parken vor dem Haus.
+Sie überquert die Straße.
+Der Zug kommt um acht Uhr an.
+Wir steigen am Dom aus.
+Ich steige in den Bus ein.
+Am Sonntag besuche ich meine Oma.`.split('\n'),XJ=`Die Tür ist links.
+Das Kino ist rechts.
+Gehen Sie immer geradeaus.
+Die Schule ist nah.
+Der Flughafen ist weit.
+Die Stadt ist mir fremd.
+Der Verkäufer ist höflich.
+Die Antwort ist richtig.
+Das ist leider falsch.
+Meine Nachbarin ist nett.
+Der Elefant ist groß.
+Die Maus ist klein.
+Mein Handy ist neu.
+Das Auto ist alt.
+Das Wetter ist schön.
+Das Zimmer ist hell.
+Die Nacht ist dunkel.
+Der Film ist lang.
+Der Weg ist kurz.
+Die Musik ist laut.
+Bitte sprich leise!
+Das Meer ist ruhig.
+Der Turm ist hoch.
+Der See ist tief.
+Der Fluss ist breit.
+Die Gasse ist schmal.
+Das Auto ist teuer.
+Das Brot ist billig.
+Die Wohnung ist modern.
+Das Sofa ist gemütlich.`.split('\n'),ex=s=>`<div>📌 ${s} ${sp(s)}</div>`;
+const gr=()=>`<div class="card"><h2>١) ما القاعدة؟</h2><p>نستخدم <b>حروف الجر المكانية + Dativ</b> للإجابة عن السؤال <b>Wo?</b> (أين؟) أي لوصف مكان شخص أو شيء <b>ثابت دون حركة</b>.</p><p>Wo ist das Hotel? – Das Hotel ist <b>neben dem</b> Dom. ${sp('Wo ist das Hotel? Das Hotel ist neben dem Dom.')}</p></div>
+<div class="card"><h2>٢) حروف الجر التسعة</h2><table><tr><th>Präposition</th><th>المعنى</th><th>مثال</th></tr>
+<tr><td>auf</td><td>على</td><td>Der Stab ist auf dem Würfel.</td></tr><tr><td>an</td><td>عند / على (حافة)</td><td>Die Ampel ist an der Ecke.</td></tr><tr><td>hinter</td><td>خلف</td><td>Die Post ist hinter der Bank.</td></tr><tr><td>in</td><td>في (داخل)</td><td>Das Hotel ist in der Stadtmitte.</td></tr><tr><td>neben</td><td>بجانب</td><td>Das Café ist neben dem Kino.</td></tr><tr><td>über</td><td>فوق (دون لمس)</td><td>Die Lampe ist über dem Tisch.</td></tr><tr><td>unter</td><td>تحت</td><td>Die Katze ist unter dem Tisch.</td></tr><tr><td>vor</td><td>أمام</td><td>Der Baum steht vor der Schule.</td></tr><tr><td>zwischen</td><td>بين</td><td>Das Hotel ist zwischen dem Bahnhof und dem Dom.</td></tr></table>${sp('auf, an, hinter, in, neben, über, unter, vor, zwischen')}</div>
+<div class="card"><h2>٣) تغيّر الأداة (Nominativ ← Dativ)</h2><table><tr><th>الجنس</th><th>Nominativ</th><th>Dativ (معرّف)</th><th>Dativ (نكرة)</th></tr>
+<tr><td class="m">مذكر</td><td class="m">der / ein Dom</td><td class="m">dem Dom</td><td class="m">einem Dom</td></tr>
+<tr><td class="n">محايد</td><td class="n">das / ein Café</td><td class="n">dem Café</td><td class="n">einem Café</td></tr>
+<tr><td class="f">مؤنث</td><td class="f">die / eine Post</td><td class="f">der Post</td><td class="f">einer Post</td></tr>
+<tr><td class="p">جمع</td><td class="p">die / – Banken</td><td class="p">den Banken</td><td class="p">– Banken</td></tr></table>
+<p>الخلاصة: <b class="m">der</b> و<b class="n">das</b> ← <b>dem</b> · <b class="f">die</b> ← <b>der</b> · <b class="p">die (جمع)</b> ← <b>den</b></p>${sp('der und das werden dem. die wird der. die im Plural wird den.')}</div>
+<div class="card"><h2>٤) الجمع في Dativ</h2><p>نضيف <b>-n</b> إلى الاسم في الجمع: die Häuser ← in den Häuser<b>n</b>. لا نضيف -n إذا انتهى الجمع بـ <b>-n</b> أو <b>-s</b>: die Brücken ← unter den Brücken · die Cafés ← vor den Cafés.</p>${sp('in den Häusern. unter den Brücken. vor den Cafés.')}</div>
+<div class="card"><h2>٥) الاختصارات</h2><p><b>in dem = im</b> · <b>an dem = am</b> (للمذكر والمحايد فقط).</p><p>Das Hotel ist <b>im</b> Zentrum. · Das Café ist <b>am</b> Bahnhof. ${sp('Das Hotel ist im Zentrum. Das Café ist am Bahnhof.')}</p><p class="tr">أما المؤنث فلا اختصار: in <b class="f">der</b> Stadtmitte.</p></div>
+<div class="card"><h2>٦) خطوات التطبيق</h2><p>١. ما جنس الاسم؟ (der / das / die / جمع) ٢. ما حرف الجر؟ ٣. غيّر الأداة إلى dem / der / den. ٤. في الجمع أضف -n للاسم عند الحاجة.</p><p>مثال: neben + <span class="f">die Post</span> ← neben <b class="f">der</b> Post ✓</p></div>
+<div class="card"><h2>٧) أخطاء شائعة</h2><p>✗ Das Hotel ist in <s>die</s> Stadtmitte. ← ✓ in <b>der</b> Stadtmitte.</p><p>✗ Ich bin <s>an dem</s> Bahnhof. ← ✓ am Bahnhof.</p><p>✗ Die Post ist neben <s>die</s> Bank. ← ✓ neben <b>der</b> Bank.</p><p class="tr">Wo? = مكان ثابت ← Dativ. أما Wohin? (إلى أين؟ مع حركة) فيأتي مع Akkusativ وسنتعلمه لاحقاً.</p></div>
+<div class="card"><h2>٨) عبارات وصف الطريق</h2><p>Sie fahren zuerst geradeaus und dann nach rechts. · Sie biegen links ab. · An der Ampel fahren Sie nach links. · Vor dem Restaurant fahren Sie nach rechts. · Sie fahren an den Cafés vorbei. · Das ist in der Nähe vom Bahnhof (von + dem = vom).</p>${sp('Sie fahren zuerst geradeaus und dann nach rechts. Sie biegen links ab. An der Ampel fahren Sie nach links. Das ist in der Nähe vom Bahnhof.')}<p>⚠️ الفعل <b>helfen</b> يأتي مع Dativ أيضاً: Können Sie <b>mir</b> helfen? (ich ← mir)</p></div>`;
+const sh=a=>[...a].sort(()=>Math.random()-.5),pk=(a,n,x)=>sh(a.filter(y=>y!=x)).slice(0,n);
+const tr=a=>a[L==='en'&&a.length>3?3:2]||a[2];
+function speak(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='de-DE';u.rate=.8;const v=speechSynthesis.getVoices().find(v=>v.lang.replace('_','-')=='de-DE')||speechSynthesis.getVoices().find(v=>v.lang.startsWith('de'));if(v)u.voice=v;speechSynthesis.speak(u)}
+const sp=t=>`<button class="sp" onclick="speak(this.dataset.t)" data-t="${t.replace(/"/g,'')}">🔊</button>`;
+const nn=x=>`<b class="${x[0]}">${A[x[0]]} ${x[1]}</b>`,pl=x=>`<b class="p">die ${x[2]}</b>`;
+const tx=s=>TR?`<div class="tr">${s}</div>`:'';
+function build(){Q=[];
+N.forEach(x=>Q.push({q:`Artikel: ___ ${x[1]}`,a:A[x[0]],o:['der','das','die']}));
+N.forEach(x=>Q.push({q:`Plural: die ___ (${x[1]})`,a:x[2],f:1}));
+V.forEach(x=>Q.push({q:`Perfekt von «${x[0]}»?`,a:x[1],o:sh([x[1],...pk(V.map(y=>y[1]),2,x[1])])}));
+J.forEach(x=>Q.push({q:`Was bedeutet «${x[0]}»?`,a:x[1],o:sh([x[1],...pk(J.map(y=>y[1]),2,x[1])])}));
+N.slice(0,15).forEach((x,i)=>{const ok=i%2==0,m=ok?x[3]:N[(i+3)%N.length][3];Q.push({q:`Richtig oder falsch? «${A[x[0]]} ${x[1]}» = ${m}`,a:ok?'richtig':'falsch',o:['richtig','falsch']})});
+T.forEach(x=>{const m=x[0].match(/\{(.+?)\}/);Q.push({q:`Ergänzen: ${x[0].replace(/\{.+?\}/,'___')}`,a:m[1],f:1})});
+Q=sh(Q).slice(0,100);QI=0;SC=0}
+function balloons(){for(let i=0;i<18;i++){const d=document.createElement('div');d.className='bl';d.textContent='🎈';d.style.left=Math.random()*92+'vw';d.style.animationDelay=Math.random()*.6+'s';document.body.appendChild(d);setTimeout(()=>d.remove(),3800)}}
+function ans(el,v){const q=Q[QI];const ok=v.trim().toLowerCase()==q.a.toLowerCase();if(el.tagName=='BUTTON'){el.classList.add(ok?'ok':'no');document.querySelectorAll('.opt').forEach(b=>b.disabled=true)}
+if(ok){SC++;balloons();speak(q.a)}document.getElementById('fb').innerHTML=ok?'✅ Richtig! صحيح':`❌ Falsch – <b>${q.a}</b>`;document.getElementById('nx').style.display='block'}
+function quiz(){if(!Q.length)build();if(QI>=Q.length)return`<div class="card"><h2>🎉 ${SC} / ${Q.length}</h2><button onclick="build();R()">Neu starten</button></div>`;const q=Q[QI];
+return`<div class="card"><div class="tr">Frage ${QI+1} / ${Q.length} · ⭐ ${SC}</div><h2>${q.q}</h2>`+(q.f?`<input id="in" placeholder="Antwort" onkeydown="if(event.key=='Enter')ans(this,this.value)"> <button onclick="ans(this,document.getElementById('in').value)">OK</button>`:q.o.map(o=>`<button class="opt" onclick="ans(this,this.textContent)">${o}</button>`).join(''))+`<p id="fb"></p><button id="nx" style="display:none" onclick="QI++;R()">Weiter ➜</button></div>`}
+const TABS=[['w','📚 Wortschatz'],['d','💬 Gespräch'],['t','📝 Text'],['g','📐 Grammatik'],['h','🎧 Hören'],['v','🎬 Videos'],['q','🧩 Fragen']];
+function R(){document.getElementById('ls').innerHTML=Array.from({length:12},(_,i)=>`<button class="${i?'off':'on'}" ${i?'disabled':''}>Lektion ${i+1}</button>`).join('');
+document.getElementById('tb').innerHTML=TABS.map(t=>`<button class="${S==t[0]?'on':''}" onclick="S='${t[0]}';R()">${t[1]}</button>`).join('');
+let h=`<h2>Lektion 1 · Wir suchen das Hotel Maritim.</h2>`;
+if(S=='w')h+=`<h2>Nomen (${N.length})</h2>`+N.map((x,i)=>`<div class="card row"><div class="g">${nn(x)} · ${pl(x)} ${sp(A[x[0]]+' '+x[1]+'. Plural: die '+x[2])}${tx(L=='en'?x[4]:x[3])}${ex(XN[i])}</div></div>`).join('')+`<h2>Verben (${V.length})</h2>`+V.map((x,i)=>`<div class="card"><b>${x[0]}</b> → ${x[1]} ${sp(x[0]+'. '+x[1])}${tx(L=='en'?x[3]:x[2])}${ex(XV[i])}</div>`).join('')+`<h2>Adjektive (${J.length})</h2>`+J.map((x,i)=>`<div class="card"><b>${x[0]}</b> ${sp(x[0])}${tx(L=='en'?x[2]:x[1])}${ex(XJ[i])}</div>`).join('');
+if(S=='d')h+=D.map(x=>`<div class="card"><div>❓ ${x[0]} ${sp(x[0])}</div>${tx(x[2])}<div>💬 ${x[1]} ${sp(x[1])}</div>${tx(x[3])}</div>`).join('');
+if(S=='t')h+=`<p class="tr">Zum Auswendiglernen</p>`+T.map((x,i)=>{const s=x[0].replace(/[{}]/g,'');return`<div class="card">${i+1}. ${s} ${sp(s)}${tx(x[1])}</div>`}).join('');
+if(S=='g')h+=gr();
+if(S=='h')h+=`<div class="card"><audio controls src="${AUD}lesson1_audio.mp3"></audio></div>`+D.slice(0,3).map(x=>`<div class="card">${x[0]} ${sp(x[0]+' … '+x[1])}</div>`).join('');
+if(S=='v')h+=[2*LS-1,2*LS].map(i=>`<div class="card"><b>NWn_A1_Film_${String(i).padStart(3,'0')}</b><video controls src="${VID}NWn_A1_Film_${String(i).padStart(3,'0')}.mp4"></video></div>`).join('');
+if(S=='q')h+=quiz();
+document.getElementById('c').innerHTML=h}
+speechSynthesis.getVoices();R();
+</script></body></html>
