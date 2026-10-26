@@ -10575,7 +10575,7 @@ function LibraryFileViewer({
   }) : fileKind === "html" && source ? React.createElement("iframe", {
     title: book.title,
     src: source,
-    sandbox: "allow-scripts allow-forms",
+    sandbox: source.startsWith("file:") ? "allow-scripts allow-forms allow-same-origin" : "allow-scripts allow-forms",
     referrerPolicy: "no-referrer",
     loading: "eager",
     className: "min-h-0 flex-1 border-0"
