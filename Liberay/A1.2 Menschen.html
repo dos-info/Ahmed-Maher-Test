@@ -25,7 +25,7 @@ video,audio{width:100%;border-radius:10px;margin:4px 0}
 <button onclick="TR=!TR;R()">🌐 Übersetzung</button></header>
 <div class="ls" id="ls"></div><div class="tabs" id="tb"></div><main id="c"></main>
 <script>
-let LS=1;const AUD='file:///C:/Users/dos-a/OneDrive/Desktop/Ahmed%20Maher/Liberay/MenA1kb/',VID='file:///C:/Users/dos-a/OneDrive/Desktop/Ahmed%20Maher/Liberay/media/';
+let LS=1;const AU=[,'01 Lektion 13, 1;03 Lektion 13, 5;04 Lektion 13, 9a','05 Lektion 14, 1;06 Lektion 14, 4','07 Lektion 15, 1b 1;08 Lektion 15, 1b 2;09 Lektion 15, 1b 3;10 Lektion 15, 1b 4;11 Lektion 15, 1b 5;12 Lektion 15, 1b','15 Lektion 16, 1a;16 Lektion 16, 3_4','17 Lektion 17, 1','18 Lektion 18, 1b;19 Lektion 18, 2 1;20 Lektion 18, 2','23 Lektion 19, 1a;24 Lektion 19, 2_3;25 Lektion 19, 6a 1;26 Lektion 19, 6a 3;27 Lektion 19, 6a;28 Lektion 19, 8a 1;29 Lektion 19, 8a 2;30 Lektion 19, 8a','31 Lektion 20, 2','32 Lektion 21, 1','34 Lektion 22, 1a;35 Lektion 22, 3;36 Lektion 22, 8a','37 Lektion 23, 1;38 Lektion 23, 3b 1;39 Lektion 23, 3b 2;40 Lektion 23, 3b 3;41 Lektion 23, 3b;42 Lektion 23, 6a 1;43 Lektion 23, 6a 2;44 Lektion 23, 6a 3;45 Lektion 23, 6a','46 Lektion 24, 1'].map(x=>x&&x.split(';'));const AUD='file:///C:/Users/dos-a/OneDrive/Desktop/Ahmed%20Maher/Liberay/MenA1kb/',VID='file:///C:/Users/dos-a/OneDrive/Desktop/Ahmed%20Maher/Liberay/media/';
 let L='ar',TR=true,S='w',QI=0,SC=0,Q=[];
 const A={m:'der',n:'das',f:'die',p:'die'};
 // Nomen: Genus|Wort|Plural|ar|en
@@ -352,7 +352,7 @@ if(S=='w')h+=`<h2>Nomen (${N.length})</h2>`+N.map((x,i)=>`<div class="card row">
 if(S=='d')h+=D.map(x=>`<div class="card"><div>❓ ${x[0]} ${sp(x[0])}</div>${tx(x[2])}<div>💬 ${x[1]} ${sp(x[1])}</div>${tx(x[3])}</div>`).join('');
 if(S=='t')h+=`<p class="tr">Zum Auswendiglernen</p>`+T.map((x,i)=>{const s=x[0].replace(/[{}]/g,'');return`<div class="card">${i+1}. ${s} ${sp(s)}${tx(x[1])}</div>`}).join('');
 if(S=='g')h+=gr();
-if(S=='h')h+=`<div class="card"><audio controls src="${AUD}lesson1_audio.mp3"></audio></div>`+D.slice(0,3).map(x=>`<div class="card">${x[0]} ${sp(x[0]+' … '+x[1])}</div>`).join('');
+if(S=='h')h+=`${AU[LS].map(n=>`<div class="card"><b>🎧 ${n}</b><audio controls src="${AUD}${encodeURIComponent(n)}.mp3"></audio></div>`).join('')}`+D.slice(0,3).map(x=>`<div class="card">${x[0]} ${sp(x[0]+' … '+x[1])}</div>`).join('');
 if(S=='v')h+=[2*LS-1,2*LS].map(i=>`<div class="card"><b>NWn_A1_Film_${String(i).padStart(3,'0')}</b><video controls src="${VID}NWn_A1_Film_${String(i).padStart(3,'0')}.mp4"></video></div>`).join('');
 if(S=='q')h+=quiz();
 document.getElementById('c').innerHTML=h}
