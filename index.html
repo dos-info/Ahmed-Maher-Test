@@ -4582,10 +4582,7 @@ function PublicLanding({
     target: "_blank",
     rel: "noreferrer",
     "aria-label": X.wa
-  }, React.createElement(UiIcon, {
-    name: "chat",
-    size: 22
-  }), React.createElement("span", null, "WhatsApp"))), lightbox && React.createElement("div", {
+  }, React.createElement("svg", { viewBox: "0 0 24 24", width: 22, height: 22, fill: "#fff", "aria-hidden": "true" }, React.createElement("path", { d: "M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.78a9.87 9.87 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 01-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 012.89 6.99c0 5.45-4.44 9.88-9.89 9.88M20.46 3.49A11.8 11.8 0 0012.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 005.69 1.45c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42" })), React.createElement("span", null, "WhatsApp"))), lightbox && React.createElement("div", {
     className: "dos-lightbox",
     role: "dialog",
     "aria-modal": "true",
@@ -20036,7 +20033,8 @@ function ChatSetupNotice({
 /* ===== DOS GROUP CALL (LiveKit) + CALL PERMISSIONS ===== */
 const dosH = React.createElement;
 async function lkInvoke(body) {
-  const { data, error } = await supabaseClient.functions.invoke("livekit-token", { body });
+  const { data: ss } = await supabaseClient.auth.getSession();
+  const { data, error } = await supabaseClient.functions.invoke("livekit-token", { body, headers: ss?.session ? { Authorization: "Bearer " + ss.session.access_token } : {} });
   if (error) {
     let m = error.message;
     try { m = (await error.context.json()).error || m; } catch (e) {}
@@ -24838,6 +24836,141 @@ function App() {
     onClose: () => setShowLogoutConfirm(false)
   }));
 }
-ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));</script>
+const FAUST_CSS = ".dos-fab-wa{width:44px!important;height:44px!important;min-height:44px!important;padding:0!important;justify-content:center!important;border-radius:50%!important;background:#22c55e!important;box-shadow:0 6px 16px rgba(34,197,94,.4)!important}.dos-fab-wa span{display:none!important}.dos-fab-top{width:40px!important;height:40px!important}.dos-fab-wrap{gap:8px!important}";
+const FistIcon = ({ s = 24 }) => dosH("svg", { viewBox: "0 0 24 24", width: s, height: s, fill: "none" },
+  dosH("rect", { x: 8.5, y: 14, width: 7, height: 9, rx: 1.6, fill: "#fff" }),
+  dosH("rect", { x: 5.5, y: 3.5, width: 13, height: 11.5, rx: 3.4, fill: "#fff" }),
+  dosH("path", { d: "M9.6 4.2v4.2M12 3.8v4.6M14.4 4.2v4.2", stroke: "#0C0F1D", strokeWidth: 1.1, strokeLinecap: "round" }),
+  dosH("rect", { x: 7.2, y: 10.2, width: 7.2, height: 2.8, rx: 1.4, fill: "#fff", stroke: "#0C0F1D", strokeWidth: 1.1 }),
+  dosH("path", { d: "M8.6 17.5h6.8", stroke: "#0C0F1D", strokeWidth: 1, strokeLinecap: "round", opacity: .5 }));
+const FAUST_LANGS = [["auto", "تلقائي / Auto"], ["العربية", "العربية"], ["English", "English"], ["Deutsch", "Deutsch"]];
+function FaustWidget() {
+  const [open, setOpen] = useState(false), [hide, setHide] = useState(false), [busy, setBusy] = useState(false), [text, setText] = useState(""), [lang, setLang] = useState("auto"), [bot, setBot] = useState(18);
+  const [msgs, setMsgs] = useState([{ role: "model", content: "مرحباً! أنا Faust مساعد أكاديمية DOS 👋 اسألني عن الدورات والأسعار والمواعيد والحجز.\nHello! Ask me about courses, prices and booking. · Hallo! Frag mich zu Kursen, Preisen und Buchung." }]);
+  const sid = useRef(null), endRef = useRef(null);
+  if (!sid.current) { try { sid.current = localStorage.getItem("faust_sid"); } catch (e) {} if (!sid.current) { sid.current = "s" + Math.random().toString(36).slice(2) + Date.now().toString(36); try { localStorage.setItem("faust_sid", sid.current); } catch (e) {} } }
+  useEffect(() => {
+    const check = async (u) => { if (!u) { setHide(false); return; } const { data } = await supabaseClient.from("profiles").select("role").eq("id", u.id).maybeSingle(); setHide(data?.role === "admin" || data?.role === "instructor"); };
+    supabaseClient.auth.getSession().then(({ data }) => check(data?.session?.user));
+    const { data: sub } = supabaseClient.auth.onAuthStateChange((_e, s) => check(s?.user));
+    const t = setInterval(() => { const w = document.querySelector(".dos-fab-wrap"); setBot(w ? Math.round(window.innerHeight - w.getBoundingClientRect().top + 8) : 18); }, 700);
+    return () => { sub?.subscription?.unsubscribe(); clearInterval(t); };
+  }, []);
+  useEffect(() => { endRef.current && endRef.current.scrollIntoView({ behavior: "smooth" }); }, [msgs, open]);
+  async function send() {
+    const t = text.trim(); if (!t || busy) return;
+    setText(""); setBusy(true); setMsgs(m => [...m, { role: "user", content: t }]);
+    try {
+      const r = await fetch(SUPABASE_URL + "/functions/v1/faust-chat", { method: "POST", headers: { "Content-Type": "application/json", apikey: SUPABASE_ANON_KEY, Authorization: "Bearer " + SUPABASE_ANON_KEY }, body: JSON.stringify({ session: sid.current, message: t, lang }) });
+      const j = await r.json(); setMsgs(m => [...m, { role: "model", content: j.reply || "عذراً، حدث خطأ." }]);
+    } catch (e) { setMsgs(m => [...m, { role: "model", content: "تعذر الاتصال. تحقق من الإنترنت وحاول مجدداً." }]); }
+    setBusy(false);
+  }
+  if (hide) return dosH("style", null, FAUST_CSS);
+  return dosH(React.Fragment, null, dosH("style", null, FAUST_CSS),
+    !open && dosH("button", { onClick: () => setOpen(true), "aria-label": "Faust", title: "Faust", style: { position: "fixed", bottom: bot, insetInlineEnd: 18, zIndex: 2500, width: 44, height: 44, borderRadius: "50%", background: "#0C0F1D", display: "grid", placeItems: "center", boxShadow: "0 6px 16px rgba(0,0,0,.35)", border: "2px solid #C9A24B" } }, dosH(FistIcon, { s: 24 })),
+    open && dosH("div", { style: { position: "fixed", bottom: 12, insetInlineEnd: 12, zIndex: 2600, width: "min(380px,calc(100vw - 24px))", height: "min(560px,calc(100vh - 24px))", background: "#fff", borderRadius: 18, boxShadow: "0 12px 50px rgba(0,0,0,.35)", display: "flex", flexDirection: "column", overflow: "hidden", fontFamily: "Cairo,sans-serif", direction: "rtl" } },
+      dosH("div", { style: { background: "#0C0F1D", color: "#fff", padding: "10px 14px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8 } }, dosH("b", null, "Faust · مساعد DOS"),
+        dosH("select", { value: lang, onChange: e => setLang(e.target.value), "aria-label": "Language", style: { background: "#1c2036", color: "#fff", borderRadius: 8, padding: "3px 6px", fontSize: 12 } }, FAUST_LANGS.map(([v, l]) => dosH("option", { key: v, value: v }, l))),
+        dosH("button", { onClick: () => setOpen(false), style: { color: "#fff", fontSize: 18 } }, "✕")),
+      dosH("div", { style: { flex: 1, overflow: "auto", padding: 12, background: "#f6f7fb" } }, msgs.map((m, i) => dosH("div", { key: i, style: { display: "flex", justifyContent: m.role === "user" ? "flex-start" : "flex-end", marginBottom: 8 } }, dosH("div", { dir: "auto", style: { maxWidth: "85%", padding: "8px 12px", borderRadius: 14, fontSize: 14, lineHeight: 1.7, whiteSpace: "pre-wrap", background: m.role === "user" ? "#C9A24B" : "#fff", color: m.role === "user" ? "#fff" : "#111", boxShadow: "0 1px 3px rgba(0,0,0,.1)" } }, m.content))), busy && dosH("div", { style: { fontSize: 12, color: "#888" } }, "Faust…"), dosH("div", { ref: endRef })),
+      dosH("div", { style: { display: "flex", gap: 6, padding: 10, borderTop: "1px solid #eee" } },
+        dosH("input", { value: text, onChange: e => setText(e.target.value), onKeyDown: e => e.key === "Enter" && send(), placeholder: "اكتب رسالتك… / Type here…", maxLength: 800, style: { flex: 1, border: "1px solid #ddd", borderRadius: 12, padding: "8px 12px", fontSize: 14 } }),
+        dosH("button", { onClick: send, disabled: busy, style: { background: "#0C0F1D", color: "#fff", borderRadius: 12, padding: "0 16px", fontWeight: 700 } }, "➤"))));
+}
+/* ===== لوحة تحكم Faust والوكيل (للأدمن) ===== */
+const FA = { inp: { border: "1px solid #d1d5db", borderRadius: 8, padding: "6px 10px", fontSize: 13, width: "100%", fontFamily: "Cairo,sans-serif" }, btn: { background: "#0C0F1D", color: "#fff", borderRadius: 8, padding: "6px 14px", fontSize: 13, fontWeight: 700 }, card: { border: "1px solid #e5e7eb", borderRadius: 12, padding: 12, marginBottom: 10, background: "#fff" } };
+const KB_CATS = { course: "دورة", price: "سعر", schedule: "مواعيد", payment: "دفع", faq: "سؤال شائع", policy: "سياسة", other: "أخرى" };
+const LEAD_ST = { new: "جديد", contacted: "تم التواصل", paid: "تم الدفع", closed: "مغلق" };
+function FKb() {
+  const [rows, setRows] = useState([]), [msg, setMsg] = useState("");
+  const load = async () => { const { data, error } = await supabaseClient.from("faust_knowledge").select("*").order("sort").order("created_at"); setRows(data || []); if (error) setMsg(error.message); };
+  useEffect(() => { load(); }, []);
+  const upd = (id, f, v) => setRows(r => r.map(x => x.id === id ? { ...x, [f]: v } : x));
+  const save = async x => { const { error } = await supabaseClient.from("faust_knowledge").update({ category: x.category, title: x.title, content: x.content, active: x.active, sort: +x.sort || 0 }).eq("id", x.id); setMsg(error ? error.message : "✓ تم الحفظ: " + x.title); };
+  const add = async () => { const { error } = await supabaseClient.from("faust_knowledge").insert({ title: "عنوان جديد", content: "اكتب المعلومة هنا (الأسعار، المواعيد، شروط الحجز…)", category: "faq" }); error ? setMsg(error.message) : load(); };
+  const del = async x => { if (!window.confirm("حذف «" + x.title + "»؟")) return; await supabaseClient.from("faust_knowledge").delete().eq("id", x.id); load(); };
+  return dosH("div", null, dosH("div", { style: { display: "flex", gap: 8, alignItems: "center", marginBottom: 10 } }, dosH("button", { style: FA.btn, onClick: add }, "➕ إضافة معلومة"), dosH("span", { style: { fontSize: 12, color: "#16a34a" } }, msg)),
+    rows.map(x => dosH("div", { key: x.id, style: { ...FA.card, opacity: x.active ? 1 : .55 } },
+      dosH("div", { style: { display: "flex", gap: 6, marginBottom: 6, flexWrap: "wrap" } },
+        dosH("select", { value: x.category, onChange: e => upd(x.id, "category", e.target.value), style: { ...FA.inp, width: 120 } }, Object.entries(KB_CATS).map(([k, v]) => dosH("option", { key: k, value: k }, v))),
+        dosH("input", { value: x.title, onChange: e => upd(x.id, "title", e.target.value), style: { ...FA.inp, flex: 1, minWidth: 150 } }),
+        dosH("input", { type: "number", value: x.sort, onChange: e => upd(x.id, "sort", e.target.value), title: "الترتيب", style: { ...FA.inp, width: 70 } })),
+      dosH("textarea", { rows: 4, value: x.content, onChange: e => upd(x.id, "content", e.target.value), style: FA.inp }),
+      dosH("div", { style: { display: "flex", gap: 10, marginTop: 6, alignItems: "center" } }, dosH("label", { style: { fontSize: 13 } }, dosH("input", { type: "checkbox", checked: !!x.active, onChange: e => upd(x.id, "active", e.target.checked) }), " مفعّلة"), dosH("button", { style: FA.btn, onClick: () => save(x) }, "حفظ"), dosH("button", { style: { ...FA.btn, background: "#C8283A" }, onClick: () => del(x) }, "حذف")))));
+}
+function FLeads() {
+  const [rows, setRows] = useState([]), [f, setF] = useState("all");
+  const load = async () => { const { data } = await supabaseClient.from("faust_leads").select("*").order("created_at", { ascending: false }).limit(300); setRows(data || []); };
+  useEffect(() => { load(); }, []);
+  const setSt = async (x, status) => { await supabaseClient.from("faust_leads").update({ status }).eq("id", x.id); load(); };
+  const del = async x => { if (window.confirm("حذف الطلب؟")) { await supabaseClient.from("faust_leads").delete().eq("id", x.id); load(); } };
+  const ph = v => { const d = String(v || "").replace(/\D/g, ""); return d.startsWith("20") ? d : d.startsWith("0") ? "2" + d : d; };
+  const list = rows.filter(r => f === "all" || r.status === f);
+  return dosH("div", null, dosH("div", { style: { display: "flex", gap: 6, marginBottom: 10, flexWrap: "wrap" } }, [["all", "الكل (" + rows.length + ")"], ...Object.entries(LEAD_ST).map(([k, v]) => [k, v + " (" + rows.filter(r => r.status === k).length + ")"])].map(([k, v]) => dosH("button", { key: k, onClick: () => setF(k), style: { ...FA.btn, background: f === k ? "#C9A24B" : "#0C0F1D" } }, v))),
+    !list.length && dosH("p", { style: { color: "#888" } }, "لا توجد طلبات حجز."),
+    list.map(x => dosH("div", { key: x.id, style: FA.card }, dosH("b", null, x.name || "—"), " · ", dosH("span", { dir: "ltr" }, x.phone), dosH("div", { style: { fontSize: 13, margin: "4px 0" } }, "الدورة: ", x.course, x.note ? " · " + x.note : ""), dosH("div", { style: { fontSize: 11, color: "#888" } }, new Date(x.created_at).toLocaleString("ar-EG")),
+      dosH("div", { style: { display: "flex", gap: 6, marginTop: 6, flexWrap: "wrap" } }, dosH("select", { value: x.status, onChange: e => setSt(x, e.target.value), style: { ...FA.inp, width: 130 } }, Object.entries(LEAD_ST).map(([k, v]) => dosH("option", { key: k, value: k }, v))),
+        dosH("a", { href: "https://wa.me/" + ph(x.phone), target: "_blank", rel: "noreferrer", style: { ...FA.btn, background: "#22c55e" } }, "واتساب"), dosH("button", { style: { ...FA.btn, background: "#C8283A" }, onClick: () => del(x) }, "حذف")))));
+}
+function FChats() {
+  const [rows, setRows] = useState([]), [sel, setSel] = useState(null);
+  const load = async () => { const { data } = await supabaseClient.from("faust_messages").select("*").order("created_at", { ascending: false }).limit(600); setRows(data || []); };
+  useEffect(() => { load(); }, []);
+  const groups = {}; rows.forEach(r => { (groups[r.session_id] = groups[r.session_id] || []).push(r); });
+  const sess = Object.entries(groups);
+  const delS = async id => { if (window.confirm("حذف المحادثة؟")) { await supabaseClient.from("faust_messages").delete().eq("session_id", id); setSel(null); load(); } };
+  if (sel) { const th = [...(groups[sel] || [])].reverse(); return dosH("div", null, dosH("div", { style: { display: "flex", gap: 8, marginBottom: 8 } }, dosH("button", { style: FA.btn, onClick: () => setSel(null) }, "← رجوع"), dosH("button", { style: { ...FA.btn, background: "#C8283A" }, onClick: () => delS(sel) }, "حذف المحادثة")), th.map(m => dosH("div", { key: m.id, dir: "auto", style: { ...FA.card, background: m.role === "user" ? "#fff7e0" : "#f1f5f9", whiteSpace: "pre-wrap", fontSize: 13 } }, dosH("small", { style: { color: "#888" } }, m.role === "user" ? "زائر" : "Faust", " · ", new Date(m.created_at).toLocaleString("ar-EG")), dosH("div", null, m.content)))); }
+  return dosH("div", null, !sess.length && dosH("p", { style: { color: "#888" } }, "لا توجد محادثات بعد."), sess.map(([id, ms]) => { const first = [...ms].reverse().find(m => m.role === "user"); return dosH("div", { key: id, onClick: () => setSel(id), style: { ...FA.card, cursor: "pointer" } }, dosH("b", { dir: "auto" }, (first?.content || "…").slice(0, 80)), dosH("div", { style: { fontSize: 11, color: "#888" } }, ms.length + " رسالة · " + new Date(ms[0].created_at).toLocaleString("ar-EG"))); }));
+}
+function FSettings() {
+  const [fs, setFs] = useState(null), [ag, setAg] = useState(null), [msg, setMsg] = useState("");
+  useEffect(() => { supabaseClient.from("faust_settings").select("*").eq("id", 1).maybeSingle().then(({ data }) => setFs(data)); supabaseClient.from("agent_settings").select("*").eq("id", 1).maybeSingle().then(({ data }) => setAg(data)); }, []);
+  const sv = async () => { const a = await supabaseClient.from("faust_settings").update({ enabled: fs.enabled, greeting: fs.greeting, payment_info: fs.payment_info, extra_rules: fs.extra_rules, daily_limit: +fs.daily_limit || 1500, updated_at: new Date().toISOString() }).eq("id", 1); const b = await supabaseClient.from("agent_settings").update({ enabled: ag.enabled, send_email: ag.send_email, send_whatsapp: ag.send_whatsapp, send_to_guardian: ag.send_to_guardian, include_instructors: ag.include_instructors, tone: ag.tone, updated_at: new Date().toISOString() }).eq("id", 1); setMsg(a.error || b.error ? (a.error || b.error).message : "✓ تم حفظ الإعدادات"); };
+  if (!fs || !ag) return dosH("p", null, "جارٍ التحميل… (إن بقيت هكذا فشغّل ملفي 04 و05 SQL)");
+  const chk = (o, set, k, l) => dosH("label", { style: { display: "block", fontSize: 13, margin: "4px 0" } }, dosH("input", { type: "checkbox", checked: !!o[k], onChange: e => set({ ...o, [k]: e.target.checked }) }), " " + l);
+  const txt = (o, set, k, l, rows) => dosH("label", { style: { display: "block", fontSize: 13, margin: "8px 0" } }, l, dosH("textarea", { rows, value: o[k] || "", onChange: e => set({ ...o, [k]: e.target.value }), style: FA.inp }));
+  return dosH("div", null, dosH("div", { style: FA.card }, dosH("h4", { style: { fontWeight: 800 } }, "🤖 Faust (محادثات الزوار)"), chk(fs, setFs, "enabled", "تفعيل Faust"),
+    txt(fs, setFs, "payment_info", "معلومات الدفع التي يرسلها Faust بعد الحجز (رقم محفظة، رابط دفع، حساب…)", 3), txt(fs, setFs, "extra_rules", "تعليمات إضافية لـ Faust (نبرة، ممنوعات، عروض…)", 3),
+    dosH("label", { style: { fontSize: 13 } }, "الحد اليومي لعدد رسائل الزوار ", dosH("input", { type: "number", value: fs.daily_limit, onChange: e => setFs({ ...fs, daily_limit: e.target.value }), style: { ...FA.inp, width: 100 } }))),
+    dosH("div", { style: FA.card }, dosH("h4", { style: { fontWeight: 800 } }, "📊 وكيل التقارير اليومية"), chk(ag, setAg, "enabled", "تفعيل الإرسال اليومي (12 منتصف الليل)"), chk(ag, setAg, "send_email", "إرسال بالإيميل"), chk(ag, setAg, "send_whatsapp", "إرسال بالواتساب (تلقائي إن كان Meta مضبوطاً، وإلا روابط يدوية)"), chk(ag, setAg, "send_to_guardian", "إرسال نسخة لولي الأمر"), chk(ag, setAg, "include_instructors", "تقارير للمحاضرين"),
+      dosH("label", { style: { display: "block", fontSize: 13, margin: "8px 0" } }, "نبرة التقرير", dosH("input", { value: ag.tone || "", onChange: e => setAg({ ...ag, tone: e.target.value }), style: FA.inp }))),
+    dosH("button", { style: FA.btn, onClick: sv }, "💾 حفظ الإعدادات"), dosH("span", { style: { marginInlineStart: 10, fontSize: 12, color: "#16a34a" } }, msg));
+}
+function FReports() {
+  const today = () => new Date().toLocaleDateString("en-CA", { timeZone: "Africa/Cairo" });
+  const [d, setD] = useState(today()), [rows, setRows] = useState([]), [msg, setMsg] = useState(""), [view, setView] = useState(null), [busy, setBusy] = useState(false);
+  const load = async () => { const { data } = await supabaseClient.from("daily_reports").select("*").eq("report_date", d).order("role").order("person_name"); setRows(data || []); };
+  useEffect(() => { load(); }, [d]);
+  async function run() { setBusy(true); setMsg("جارٍ التشغيل…"); const { data: ss } = await supabaseClient.auth.getSession(); if (!ss?.session) { setMsg("انتهت جلسة الدخول، سجّل الدخول من جديد"); setBusy(false); return; }
+    const { data, error } = await supabaseClient.functions.invoke("daily-reports", { body: { force: true, date: d }, headers: { Authorization: "Bearer " + ss.session.access_token } }); if (error) { let m = error.message; try { m = (await error.context.json()).error || m; } catch (e) {} setMsg("خطأ: " + m); } else setMsg(`تمت معالجة ${data.processed} وتبقّى ${data.remaining}`); setBusy(false); setTimeout(load, 1500); }
+  const st = (k) => rows.filter(r => r.email_status === k || r.whatsapp_status === k).length;
+  const lag = rows.filter(r => r.data?.["مقصّر"]);
+  const hrs = rows.reduce((t, r) => t + (+r.data?.["ساعات_المذاكرة"] || 0), 0).toFixed(1);
+  return dosH("div", null, dosH("div", { style: { display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginBottom: 10 } }, dosH("input", { type: "date", value: d, onChange: e => setD(e.target.value), style: { ...FA.inp, width: 160 } }), dosH("button", { style: FA.btn, disabled: busy, onClick: run }, "▶ تشغيل الوكيل لهذا اليوم"), dosH("span", { style: { fontSize: 12 } }, msg)),
+    dosH("div", { style: { ...FA.card, fontSize: 13 } }, `التقارير: ${rows.length} · إجمالي ساعات المذاكرة: ${hrs} · مقصّرون: ${lag.length} · إيميل مُرسل: ${rows.filter(r => r.email_status === "sent").length} · واتساب مُرسل: ${rows.filter(r => r.whatsapp_status === "sent").length} · فشل: ${rows.filter(r => r.email_status === "failed" || r.whatsapp_status === "failed").length}`),
+    lag.length > 0 && dosH("div", { style: { ...FA.card, background: "#fef2f2", fontSize: 13 } }, "⚠️ الطلاب المقصّرون: ", lag.map(r => r.person_name).join("، ")),
+    view && dosH("div", { style: { ...FA.card, background: "#f8fafc", whiteSpace: "pre-wrap", fontSize: 13 } }, dosH("b", null, view.person_name), dosH("div", null, view.body), view.error && dosH("div", { style: { color: "#C8283A", fontSize: 12 } }, view.error), dosH("button", { style: FA.btn, onClick: () => setView(null) }, "إغلاق")),
+    dosH("div", { style: { overflowX: "auto" } }, dosH("table", { style: { width: "100%", fontSize: 12, textAlign: "center" } }, dosH("tbody", null, dosH("tr", { style: { background: "#f1f5f9" } }, ["الاسم", "الدور", "ساعات", "مقصّر", "إيميل", "واتساب", ""].map(h => dosH("th", { key: h, style: { padding: 6 } }, h))),
+      rows.map(r => dosH("tr", { key: r.id, style: { borderBottom: "1px solid #eee" } }, dosH("td", { style: { padding: 6, textAlign: "right" } }, r.person_name), dosH("td", null, r.role === "student" ? "طالب" : "محاضر"), dosH("td", null, r.data?.["ساعات_المذاكرة"] ?? "—"), dosH("td", null, r.data?.["مقصّر"] ? "⚠️" : ""), dosH("td", null, r.email_status), dosH("td", null, r.whatsapp_status), dosH("td", null, dosH("button", { style: { color: "#2563eb" }, onClick: () => setView(r) }, "عرض"), r.wa_link && dosH("a", { href: r.wa_link, target: "_blank", rel: "noreferrer", style: { color: "#16a34a", marginInlineStart: 8 } }, "واتساب"))))))));
+}
+function FaustAdmin() {
+  const [ok, setOk] = useState(false), [open, setOpen] = useState(false), [tab, setTab] = useState("kb");
+  useEffect(() => {
+    const check = async (u) => { if (!u) { setOk(false); return; } const { data } = await supabaseClient.from("profiles").select("role").eq("id", u.id).maybeSingle(); setOk(data?.role === "admin"); };
+    supabaseClient.auth.getSession().then(({ data }) => check(data?.session?.user));
+    const { data: sub } = supabaseClient.auth.onAuthStateChange((_e, s) => check(s?.user));
+    return () => sub?.subscription?.unsubscribe();
+  }, []);
+  if (!ok) return null;
+  const tabs = [["kb", "📚 المعرفة"], ["leads", "📝 الحجوزات"], ["chats", "💬 المحادثات"], ["set", "⚙️ الإعدادات"], ["rep", "📊 التقارير"]];
+  return dosH(React.Fragment, null,
+    !open && dosH("button", { onClick: () => setOpen(true), title: "لوحة Faust", style: { position: "fixed", bottom: 18, insetInlineEnd: 18, zIndex: 2500, width: 44, height: 44, borderRadius: "50%", background: "#0C0F1D", display: "grid", placeItems: "center", border: "2px solid #C9A24B" } }, dosH(FistIcon, { s: 24 })),
+    open && dosH("div", { style: { position: "fixed", inset: 0, zIndex: 3000, background: "#f6f7fb", display: "flex", flexDirection: "column", direction: "rtl", fontFamily: "Cairo,sans-serif" } },
+      dosH("div", { style: { background: "#0C0F1D", color: "#fff", padding: "10px 14px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 } }, dosH("b", null, "لوحة Faust والتقارير"), dosH("div", { style: { display: "flex", gap: 6, flexWrap: "wrap" } }, tabs.map(([k, l]) => dosH("button", { key: k, onClick: () => setTab(k), style: { padding: "5px 12px", borderRadius: 8, fontSize: 13, background: tab === k ? "#C9A24B" : "#1c2036", color: "#fff" } }, l))), dosH("button", { onClick: () => setOpen(false), style: { color: "#fff", fontSize: 20 } }, "✕")),
+      dosH("div", { style: { flex: 1, overflow: "auto", padding: 14, maxWidth: 900, width: "100%", margin: "0 auto" } }, tab === "kb" ? dosH(FKb) : tab === "leads" ? dosH(FLeads) : tab === "chats" ? dosH(FChats) : tab === "set" ? dosH(FSettings) : dosH(FReports))));
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(React.Fragment, null, React.createElement(App), React.createElement(FaustWidget), React.createElement(FaustAdmin)));</script>
 </body>
 </html>
