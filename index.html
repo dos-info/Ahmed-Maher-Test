@@ -557,6 +557,21 @@
 
   /* ===================== DOS Course Section Enhanced UI ===================== */
   .dos-courses-wrap { position: relative; margin-top: 10px; }
+  .dos-journey{padding:56px clamp(20px,5vw,72px);background:#fff;border-top:1px solid #e8e5df;font-family:Cairo,Arial,sans-serif;color:#17202b}
+  .dos-journey h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 6px}.dos-journey .jlead{color:#5d6876;margin:0 0 18px}
+  .dos-journey .jrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+  .dos-journey .jtab{font:inherit;font-weight:700;padding:8px 18px;border-radius:999px;border:1px solid #e8e5df;background:#fbfaf7;color:#17202b;cursor:pointer}
+  .dos-journey .jtab.on{background:#0c0f1d;color:#fff;border-color:#0c0f1d}
+  .dos-journey input[type=date]{font:inherit;padding:6px 10px;border:1px solid #e8e5df;border-radius:8px}
+  .dos-journey .jstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0}
+  .dos-journey .jstat{background:#fbfaf7;border:1px solid #e8e5df;border-radius:14px;padding:12px 14px}
+  .dos-journey .jstat b{display:block;font-size:19px;color:#0c0f1d}.dos-journey .jstat span{font-size:13px;color:#5d6876}
+  .dos-journey .jscroll{overflow-x:auto;border:1px solid #e8e5df;border-radius:14px}
+  .dos-journey table{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
+  .dos-journey th,.dos-journey td{padding:9px 10px;border-bottom:1px solid #e8e5df;text-align:start;white-space:nowrap}
+  .dos-journey th{background:#f3efe6}.dos-journey tr.jlv td{background:#fbfaf7;font-weight:800;color:#b07a10}
+  .dos-journey details{margin-top:14px;font-size:14px;color:#3b4654}.dos-journey summary{cursor:pointer;font-weight:700}
+  .dos-journey li{margin:5px 0}
   .dos-courses-tabs-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
   .dos-course-tab-btn { display: inline-flex; align-items: center; gap: 9px; padding: 12px 18px; border-radius: 14px; border: 1.5px solid var(--line); background: #fff; color: var(--ink); font: 700 13.5px Cairo, Arial, sans-serif; cursor: pointer; transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); box-shadow: 0 4px 12px rgba(12, 15, 29, 0.03); }
   .dos-course-tab-btn:hover { border-color: rgba(225, 29, 46, 0.4); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(12, 15, 29, 0.08); }
@@ -931,7 +946,93 @@
  .dos-pro-form { gap:16px; }
  .dos-location-label { display:none; }
 }
-@media(prefers-reduced-motion:reduce) { .dos-pro-page *, .dos-pro-page *:before,.dos-pro-page *:after { animation:none !important; transition:none !important; scroll-behavior:auto !important; } }</style>
+@media(prefers-reduced-motion:reduce) { .dos-pro-page *, .dos-pro-page *:before,.dos-pro-page *:after { animation:none !important; transition:none !important; scroll-behavior:auto !important; } }
+/* ===== DOS Dusk: Berlin-dusk palette + motion layer ===== */
+body .dos-pro-page,body .dos-public-page{--navy2:#14264d;--bg:#fbf7f0;--line:#e9e0cf;--muted:#5a6479;--surface:#fffdf8;--dd-ease:cubic-bezier(.2,.7,.2,1);background:var(--bg)}
+.dos-pro-page ::selection{background:#f2b84b;color:#0b1630}
+.dos-pro-nav{backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);background:rgba(251,247,240,.82)!important;transition:box-shadow .4s,background .4s}
+.dos-pro-nav.dd-scrolled{box-shadow:0 10px 34px rgba(11,22,48,.12)}
+.dos-pro-nav-links a{position:relative}
+.dos-pro-nav-links a:after{content:"";position:absolute;inset-inline:0;bottom:-4px;height:2px;background:#f2b84b;transform:scaleX(0);transform-origin:center;transition:transform .35s var(--dd-ease)}
+.dos-pro-nav-links a:hover:after{transform:scaleX(1)}
+.dos-hero-wrap{position:relative}
+.dos-hero-wrap:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(11,22,48,.28),rgba(11,22,48,0) 38%,rgba(242,184,75,.14));mix-blend-mode:multiply}
+@keyframes ddRise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.dos-pro-hero-copy>*{animation:ddRise .9s var(--dd-ease) both}
+.dos-pro-hero-copy>*:nth-child(2){animation-delay:.1s}.dos-pro-hero-copy>*:nth-child(3){animation-delay:.2s}.dos-pro-hero-copy>*:nth-child(4){animation-delay:.3s}.dos-pro-hero-copy>*:nth-child(5){animation-delay:.4s}
+.dos-pro-btn-primary,.dos-public-primary{background:linear-gradient(135deg,#e11d2e,#ff4d5e)!important;color:#fff!important;border:0!important;position:relative;overflow:hidden;box-shadow:0 12px 30px rgba(225,29,46,.38);transition:transform .35s var(--dd-ease),box-shadow .35s}
+.dos-pro-btn-primary:hover,.dos-public-primary:hover{transform:scale(1.05);box-shadow:0 18px 40px rgba(225,29,46,.48)}
+.dos-pro-btn-primary:after,.dos-public-primary:after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .7s var(--dd-ease)}
+.dos-pro-btn-primary:hover:after,.dos-public-primary:hover:after{left:130%}
+.dos-pro-btn-dark{background:linear-gradient(135deg,#0b1630,#14264d)!important;color:#f6efe0!important}
+.dos-pro-eyebrow:before{content:"";width:40px;height:1px;background:#e11d2e;flex-shrink:0}
+.dos-pro-section-alt{background:linear-gradient(180deg,#f4ede0,#fbf7f0)}
+.dos-why-card,.dos-sys-card,.dos-story-card,.dos-faq-item,.dos-course-card,.dos-pro-service,.dos-live-card{border-radius:22px;transition:transform .45s var(--dd-ease),box-shadow .45s,border-color .45s}
+.dos-why-card:hover,.dos-sys-card:hover,.dos-story-card:hover,.dos-course-card:hover,.dos-pro-service:hover,.dos-live-card:hover{transform:translateY(-8px);box-shadow:0 22px 48px rgba(11,22,48,.14);border-color:rgba(242,184,75,.8)}
+.dos-pro-stat strong{font-variant-numeric:tabular-nums}
+.dos-faq-item.open{border-color:#f2b84b}
+.dos-pro-page input:focus,.dos-pro-page select:focus,.dos-pro-page textarea:focus{outline:0;border-color:#f2b84b;box-shadow:0 0 0 4px rgba(242,184,75,.28)}
+.dd-progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:9999;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#e11d2e,#f2b84b);pointer-events:none}
+.dd-marquee{direction:ltr;overflow:hidden;background:#f1ebde;color:rgba(11,22,48,.32);padding:18px 0;border-block:1px solid #e9e0cf;font:500 26px/1 Fraunces,Georgia,serif;white-space:nowrap}.dd-marquee span:nth-child(even){color:#e11d2e}
+.dd-marquee div{display:inline-flex;gap:28px;padding-inline-end:28px;animation:ddScroll 34s linear infinite}
+.dd-marquee:hover div{animation-play-state:paused}
+@keyframes ddScroll{to{transform:translateX(-50%)}}
+.dd-geo{position:absolute;inset-block-end:18px;inset-inline-end:24px;z-index:3;font:600 11px/1 Inter,sans-serif;letter-spacing:.3em;color:rgba(255,255,255,.55);direction:ltr;pointer-events:none}
+.dd-js .dd-reveal{opacity:0;transform:translateY(30px);transition:opacity .85s var(--dd-ease),transform .85s var(--dd-ease);transition-delay:calc(var(--dd-i,0)*70ms)}
+.dd-js .dd-reveal.dd-in{opacity:1;transform:none}
+.dos-pro-page .dos-journey{background:linear-gradient(160deg,#0b1630,#14264d 60%,#1c2f5c);color:#f6efe0;border-top:0}
+.dos-pro-page .dos-journey .jlead{color:rgba(246,239,224,.75)}
+.dos-pro-page .dos-journey h2{color:#fff}
+.dos-pro-page .dos-journey .jtab{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.18);color:#f6efe0;transition:transform .3s var(--dd-ease),background .3s}
+.dos-pro-page .dos-journey .jtab:hover{transform:translateY(-2px)}
+.dos-pro-page .dos-journey .jtab.on{background:linear-gradient(135deg,#f6c25e,#d98e1c);color:#0b1630;border-color:transparent}
+.dos-pro-page .dos-journey input[type=date]{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff;color-scheme:dark}
+.dos-pro-page .dos-journey .jstat{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
+.dos-pro-page .dos-journey .jstat b{color:#f2b84b}.dos-pro-page .dos-journey .jstat span{color:rgba(246,239,224,.7)}
+.dos-pro-page .dos-journey .jscroll{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.04)}
+.dos-pro-page .dos-journey th{background:rgba(255,255,255,.09);color:#fff}
+.dos-pro-page .dos-journey th,.dos-pro-page .dos-journey td{border-color:rgba(255,255,255,.1)}
+.dos-pro-page .dos-journey tbody tr:not(.jlv){transition:background .25s}.dos-pro-page .dos-journey tbody tr:not(.jlv):hover{background:rgba(242,184,75,.1)}
+.dos-pro-page .dos-journey tr.jlv td{background:rgba(242,184,75,.12);color:#f2b84b}
+.dos-pro-page .dos-journey details{color:rgba(246,239,224,.82)}
+
+@keyframes ddKB{from{transform:scale(1)}to{transform:scale(1.08)}}
+@keyframes ddDrift{to{transform:translate(-40px,30px) scale(1.12)}}
+@keyframes ddPulse{0%{box-shadow:0 0 0 0 rgba(225,29,46,.55)}100%{box-shadow:0 0 0 11px rgba(225,29,46,0)}}
+.dos-hero-photo{animation:ddKB 22s ease-in-out infinite alternate;transform-origin:50% 60%}
+.dd-orb{position:absolute;border-radius:50%;filter:blur(64px);pointer-events:none;z-index:0;animation:ddDrift 16s ease-in-out infinite alternate}
+.dd-orb-a{width:30rem;height:30rem;inset-inline-end:-10rem;top:4rem;background:rgba(225,29,46,.25)}
+.dd-orb-b{width:26rem;height:26rem;bottom:-10rem;left:33%;background:rgba(255,194,26,.16);animation-delay:-7s}
+.dos-ticker-badge{animation:ddPulse 2s ease-out infinite}
+.dos-why-card:before{transition:opacity .7s var(--dd-ease),transform .7s var(--dd-ease)}
+.dos-why-card:hover:before{opacity:.32;transform:scale(1.6)}
+.dos-story-card:hover{transform:translateY(-6px) rotate(-1deg)}
+.dos-pro-page .dos-journey{position:relative;overflow:hidden}
+.dos-pro-page .dos-journey:before{content:"";position:absolute;width:24rem;height:24rem;border-radius:50%;background:rgba(225,29,46,.22);filter:blur(70px);inset-inline-start:-8rem;top:-6rem;animation:ddDrift 16s ease-in-out infinite alternate;pointer-events:none}
+.dos-pro-page .dos-journey>*{position:relative}
+@media(prefers-reduced-motion:reduce){.dd-orb,.dos-hero-photo,.dos-ticker-badge,.dos-journey:before{animation:none!important}.dd-marquee div,.dos-pro-hero-copy>*{animation:none!important}.dd-js .dd-reveal{opacity:1;transform:none;transition:none}}
+</style><script>
+(function(){
+var RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(!RM)document.documentElement.classList.add("dd-js");
+var SEL=".dos-pro-section-head,.dos-why-card,.dos-sys-card,.dos-story-card,.dos-faq-item,.dos-course-card,.dos-pro-service,.dos-pro-stat,.dos-proof-inner,.dos-journey .jstat,.dos-journey .jscroll,.dos-live-card,.dos-pro-feature";
+var io=window.IntersectionObserver?new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add("dd-in");io.unobserve(e.target);if(e.target.matches(".dos-pro-stat"))count(e.target.querySelector("strong"));});},{threshold:.12,rootMargin:"0px 0px -6% 0px"}):null;
+function count(el){if(!el||RM||el.dataset.cnt)return;el.dataset.cnt=1;var tx=el.textContent,n=parseInt(tx.replace(/\D/g,""),10);if(!n)return;var suf=tx.replace(/[\d.,\s]/g,""),t0=performance.now();
+(function f(t){var k=Math.min(1,(t-t0)/1500),v=Math.round(n*(1-Math.pow(1-k,3)));el.textContent=v.toLocaleString("de-DE")+suf;if(k<1)requestAnimationFrame(f);})(t0);}
+function tag(){if(!io)return;document.querySelectorAll(SEL).forEach(function(el,i){if(el.dataset.dd)return;el.dataset.dd=1;el.classList.add("dd-reveal");el.style.setProperty("--dd-i",i%6);io.observe(el);});}
+function marquee(){var w=document.querySelector(".dos-hero-wrap");if(!w||document.querySelector(".dd-marquee"))return;
+var P=["Hallo","Guten Tag","Wie geht\u2019s?","Viel Erfolg","Willkommen","Ich lerne Deutsch","Danke sch\u00f6n","Auf Wiedersehen"],h="";
+for(var r=0;r<2;r++)P.forEach(function(p){h+="<span>"+p+"</span><span>\u2726</span>";});
+var m=document.createElement("div");m.className="dd-marquee";m.setAttribute("aria-hidden","true");m.innerHTML="<div>"+h+h+"</div>";
+var g=document.createElement("div");g.className="dd-geo";g.textContent="BERLIN \u2014 52\u00b031\u2032N 13\u00b023\u2032E";
+w.parentNode.insertBefore(m,w.nextSibling);w.appendChild(g);var ph=w.querySelector(".dos-hero-photo");["a","b"].forEach(function(k){var o=document.createElement("span");o.className="dd-orb dd-orb-"+k;o.setAttribute("aria-hidden","true");if(ph)ph.insertAdjacentElement("afterend",o);else w.insertBefore(o,w.firstChild);});}
+var bar=document.createElement("div");bar.className="dd-progress";document.body.appendChild(bar);
+var tk=0;function onScroll(){if(tk)return;tk=1;requestAnimationFrame(function(){tk=0;var d=document.documentElement,y=window.scrollY||d.scrollTop,max=d.scrollHeight-innerHeight;bar.style.transform="scaleX("+(max>0?Math.min(1,y/max):0)+")";var nv=document.querySelector(".dos-pro-nav");if(nv)nv.classList.toggle("dd-scrolled",y>24);});}
+addEventListener("scroll",onScroll,{passive:true});
+var mt=0;new MutationObserver(function(){if(mt)return;mt=1;requestAnimationFrame(function(){mt=0;marquee();tag();});}).observe(document.body,{childList:true,subtree:true});
+marquee();tag();onScroll();
+})();
+</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" /><link rel="icon" type="image/png" href="data:image/png;base64,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" /></head>
 <body>
 <div id="root"></div>
@@ -4142,7 +4243,7 @@ function PublicLanding({
       updateField("course", resolvedCourseKey === "conversation" ? "DOS Gespräch" : resolvedCourseKey === "kids" ? "Kinderkurs" : `${card.level.split(".")[0]} ${resolvedCourseKey === "intensive" ? "Intensiv" : "Standard"}`);
       scrollTo("register");
     }
-  }, "احجز مقعدك الآن"))))), React.createElement("section", {
+  }, "احجز مقعدك الآن"))))), React.createElement(JourneySection, { language: language }), React.createElement("section", {
     className: "dos-proof",
     id: "proof"
   }, React.createElement("div", {
@@ -4576,7 +4677,7 @@ function PublicLanding({
   }, React.createElement(UiIcon, {
     name: "up",
     size: 20
-  })), React.createElement("a", {
+  })), React.createElement(FaustFab), React.createElement("a", {
     className: "dos-fab-wa",
     href: "https://wa.me/message/UCIZZX5KGTQDL1",
     target: "_blank",
@@ -20034,7 +20135,7 @@ function ChatSetupNotice({
 const dosH = React.createElement;
 async function lkInvoke(body) {
   const { data: ss } = await supabaseClient.auth.getSession();
-  const { data, error } = await supabaseClient.functions.invoke("livekit-token", { body, headers: ss?.session ? { Authorization: "Bearer " + ss.session.access_token } : {} });
+  const { data, error } = await supabaseClient.functions.invoke("livekit-token", { body, headers: ss?.session ? { Authorization: "Bearer " + ss.session.access_token, "x-user-jwt": ss.session.access_token } : {} });
   if (error) {
     let m = error.message;
     try { m = (await error.context.json()).error || m; } catch (e) {}
@@ -23790,6 +23891,55 @@ function CallCenter({
     }
   }, "المكالمة لا تُغلق إلا بالزر الأحمر · للجودة والتعليم قد تُسجَّل المكالمات")))));
 }
+const JOURNEY_DATA = {
+  general: {pw: 2, lec: {A1: 12, A2: 12, B1: 12, B2: 15}, hr: {A1: 3, A2: 3, B1: 3, B2: 3}, price: {A1: 2250, A2: 2750, B1: 3250, B2: 3750}, mat: {A1: "Netzwerk Neu", A2: "Menschen", B1: "Netzwerk Neu", B2: "Aspekte Neu"}},
+  intensive: {pw: 3, lec: {A1: 9, A2: 9, B1: 9, B2: 12}, hr: {A1: 3, A2: 3, B1: 3, B2: 3}, price: {A1: 2750, A2: 3250, B1: 3250, B2: 3750}, mat: {A1: "Netzwerk Neu", A2: "Netzwerk Neu", B1: "Netzwerk Neu", B2: "Aspekte Neu"}},
+  private: {pw: 3, lec: {A1: 9, A2: 12, B1: 12, B2: 9}, hr: {A1: 4, A2: 3, B1: 3, B2: 2}, price: {A1: 5000, A2: null, B1: 7500, B2: 7500}, mat: {A1: "Netzwerk Neu", A2: "Netzwerk Neu", B1: "Netzwerk Neu", B2: "Aspekte Neu"}}
+};
+const JOURNEY_TXT = {
+  ar: {title: "مسار الطالب من الانضمام حتى B2", lead: "كل الكورسات تبدأ يوم ٥ من الشهر. التواريخ محسوبة من عدد المحاضرات ومعدلها الأسبوعي.", tabs: {general: "عادية", intensive: "مكثفة", private: "خاصة"}, join: "تاريخ الانضمام", st: ["أول بداية", "نهاية B2.2", "المدة الكلية", "المحاضرات", "الساعات", "الرسوم", "أيام الانتظار"], mo: "شهر", cols: ["المرحلة", "الماتريال", "البداية", "النهاية", "المحاضرات", "الساعات", "السعر", "الانتظار"], lv: "مستوى", p1: " (الجزء ١)", p2: " (الجزء ٢)", na: "غير محدد", egp: "ج", day: "يوم", how: "طريقة الحساب", notes: ["مدة نصف المستوى = عدد المحاضرات ÷ المحاضرات في الأسبوع × ٧ أيام.", "البداية التالية = أول يوم ٥ بعد نهاية الدورة الحالية، والأيام بينهما فترة انتظار.", "أول بداية = أول يوم ٥ بعد تاريخ الانضمام بثلاثة أيام على الأقل. العطلات غير محسوبة.", "الساعات = المحاضرات × ٣ ساعات (خاص A1: ٤ ساعات، خاص B2: ساعتان).", "خاص A2: السعر غير محدد فلا يدخل في الإجمالي."], loc: "ar-EG"},
+  en: {title: "Student journey from enrollment to B2", lead: "All courses start on the 5th of each month. Dates are calculated from lecture counts and weekly pace.", tabs: {general: "General", intensive: "Intensive", private: "Private"}, join: "Enrollment date", st: ["First start", "B2.2 ends", "Total duration", "Lectures", "Hours", "Fees", "Waiting days"], mo: "months", cols: ["Stage", "Material", "Start", "End", "Lectures", "Hours", "Price", "Wait"], lv: "Level", p1: " (Part 1)", p2: " (Part 2)", na: "TBD", egp: "EGP", day: "days", how: "How it is calculated", notes: ["Half-level duration = lectures ÷ lectures per week × 7 days.", "Next start = the first 5th after the current course ends; the days in between are waiting time.", "First start = the first 5th at least 3 days after enrollment. Holidays are not counted.", "Hours = lectures × 3 h (Private A1: 4 h, Private B2: 2 h).", "Private A2: price not set, so it is excluded from the total."], loc: "en-GB"}
+};
+function JourneySection(props) {
+  const tx = JOURNEY_TXT[props.language] || JOURNEY_TXT.en;
+  const h = React.createElement;
+  const [track, setTrack] = React.useState("general");
+  const [join, setJoin] = React.useState(new Date().toISOString().slice(0, 10));
+  const DAY = 864e5;
+  const fmt = new Intl.DateTimeFormat(tx.loc, {day: "numeric", month: "short", year: "numeric", timeZone: "UTC"});
+  const nf = new Intl.NumberFormat(tx.loc);
+  const next5 = t => { let d = new Date(t); while (d.getUTCDate() !== 5) d = new Date(d.getTime() + DAY); return d.getTime(); };
+  const p = join.split("-");
+  const j0 = Date.UTC(+p[0], +p[1] - 1, +p[2]);
+  const T = JOURNEY_DATA[track];
+  let s = next5((isNaN(j0) ? Date.now() : j0) + 3 * DAY);
+  const first = s;
+  let last = 0, lec = 0, hrs = 0, price = 0, unpriced = false, wait = 0;
+  const rows = [];
+  ["A1", "A2", "B1", "B2"].forEach(L => [1, 2].forEach(n => {
+    const days = Math.round(T.lec[L] / T.pw * 7), e = s + days * DAY - DAY, nx = next5(e + DAY), w = Math.round((nx - e - DAY) / DAY);
+    rows.push({L, name: L + "." + n, mat: T.mat[L] + (n === 1 ? tx.p1 : tx.p2), s, e, lec: T.lec[L], hrs: T.lec[L] * T.hr[L], pr: T.price[L], w});
+    lec += T.lec[L]; hrs += T.lec[L] * T.hr[L];
+    if (T.price[L] == null) unpriced = true; else price += T.price[L];
+    last = e; s = nx;
+  }));
+  rows.forEach((r, i) => { if (i < rows.length - 1) wait += r.w; });
+  const months = Math.round(((last - first) / DAY + 1) / 30.44 * 10) / 10;
+  const stats = [fmt.format(first), fmt.format(last), nf.format(months) + " " + tx.mo, nf.format(lec), nf.format(hrs), nf.format(price) + " " + tx.egp + (unpriced ? " + A2" : ""), nf.format(wait)];
+  const body = [];
+  let pl = "";
+  rows.forEach((r, i) => {
+    if (r.L !== pl) { pl = r.L; body.push(h("tr", {key: "l" + r.L, className: "jlv"}, h("td", {colSpan: 8}, tx.lv + " " + r.L))); }
+    body.push(h("tr", {key: r.name}, h("td", null, r.name), h("td", null, r.mat), h("td", null, fmt.format(r.s)), h("td", null, fmt.format(r.e)), h("td", null, nf.format(r.lec)), h("td", null, nf.format(r.hrs)), h("td", null, r.pr == null ? tx.na : nf.format(r.pr) + " " + tx.egp), h("td", null, i === rows.length - 1 ? "—" : nf.format(r.w) + " " + tx.day)));
+  });
+  return h("section", {id: "journey", className: "dos-journey", dir: props.language === "ar" ? "rtl" : "ltr"},
+    h("h2", null, tx.title), h("p", {className: "jlead"}, tx.lead),
+    h("div", {className: "jrow"}, Object.keys(tx.tabs).map(k => h("button", {key: k, type: "button", className: "jtab" + (k === track ? " on" : ""), onClick: () => setTrack(k)}, tx.tabs[k])),
+      h("label", null, tx.join + " ", h("input", {type: "date", value: join, onChange: e => setJoin(e.target.value)}))),
+    h("div", {className: "jstats"}, stats.map((v, i) => h("div", {key: i, className: "jstat"}, h("b", null, v), h("span", null, tx.st[i])))),
+    h("div", {className: "jscroll"}, h("table", null, h("thead", null, h("tr", null, tx.cols.map(c => h("th", {key: c}, c)))), h("tbody", null, body))),
+    h("details", null, h("summary", null, tx.how), h("ul", null, tx.notes.map((n, i) => h("li", {key: i}, n)))));
+}
 function App() {
   useAcademyFonts();
   const [loading, setLoading] = useState(true);
@@ -24836,44 +24986,64 @@ function App() {
     onClose: () => setShowLogoutConfirm(false)
   }));
 }
-const FAUST_CSS = ".dos-fab-wa{width:44px!important;height:44px!important;min-height:44px!important;padding:0!important;justify-content:center!important;border-radius:50%!important;background:#22c55e!important;box-shadow:0 6px 16px rgba(34,197,94,.4)!important}.dos-fab-wa span{display:none!important}.dos-fab-top{width:40px!important;height:40px!important}.dos-fab-wrap{gap:8px!important}";
-const FistIcon = ({ s = 24 }) => dosH("svg", { viewBox: "0 0 24 24", width: s, height: s, fill: "none" },
-  dosH("rect", { x: 8.5, y: 14, width: 7, height: 9, rx: 1.6, fill: "#fff" }),
-  dosH("rect", { x: 5.5, y: 3.5, width: 13, height: 11.5, rx: 3.4, fill: "#fff" }),
-  dosH("path", { d: "M9.6 4.2v4.2M12 3.8v4.6M14.4 4.2v4.2", stroke: "#0C0F1D", strokeWidth: 1.1, strokeLinecap: "round" }),
-  dosH("rect", { x: 7.2, y: 10.2, width: 7.2, height: 2.8, rx: 1.4, fill: "#fff", stroke: "#0C0F1D", strokeWidth: 1.1 }),
-  dosH("path", { d: "M8.6 17.5h6.8", stroke: "#0C0F1D", strokeWidth: 1, strokeLinecap: "round", opacity: .5 }));
-const FAUST_LANGS = [["auto", "تلقائي / Auto"], ["العربية", "العربية"], ["English", "English"], ["Deutsch", "Deutsch"]];
-function FaustWidget() {
-  const [open, setOpen] = useState(false), [hide, setHide] = useState(false), [busy, setBusy] = useState(false), [text, setText] = useState(""), [lang, setLang] = useState("auto"), [bot, setBot] = useState(18);
-  const [msgs, setMsgs] = useState([{ role: "model", content: "مرحباً! أنا Faust مساعد أكاديمية DOS 👋 اسألني عن الدورات والأسعار والمواعيد والحجز.\nHello! Ask me about courses, prices and booking. · Hallo! Frag mich zu Kursen, Preisen und Buchung." }]);
-  const sid = useRef(null), endRef = useRef(null);
-  if (!sid.current) { try { sid.current = localStorage.getItem("faust_sid"); } catch (e) {} if (!sid.current) { sid.current = "s" + Math.random().toString(36).slice(2) + Date.now().toString(36); try { localStorage.setItem("faust_sid", sid.current); } catch (e) {} } }
+const FAUST_CSS = ".dos-fab-wrap{gap:10px!important}.dos-fab-wa{width:46px!important;height:46px!important;min-height:46px!important;padding:0!important;justify-content:center!important;border-radius:50%!important;background:#22c55e!important;box-shadow:0 6px 16px rgba(34,197,94,.4)!important}.dos-fab-wa span{display:none!important}.dos-fab-top{width:40px!important;height:40px!important;align-self:center}.dos-fab-faust{width:46px;height:46px;border-radius:50%;background:#0C0F1D;border:2px solid #C9A24B;display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,0,0,.35);cursor:pointer;transition:transform .15s}.dos-fab-faust:hover{transform:translateY(-2px)}";
+const HandIcon = ({ s = 24 }) => dosH("svg", { viewBox: "0 0 24 24", width: s, height: s, fill: "none", stroke: "#fff", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" },
+  dosH("path", { d: "M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2" }), dosH("path", { d: "M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2" }),
+  dosH("path", { d: "M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8" }), dosH("path", { d: "M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 3.4-2.8L7 15" }));
+const FistIcon = HandIcon;
+const linkify = (text) => String(text).split(/(https?:\/\/[^\s<>"')]+)/g).map((p, i) => /^https?:\/\//.test(p) ? dosH("a", { key: i, href: p, target: "_blank", rel: "noopener noreferrer", style: { color: "#2563eb", textDecoration: "underline", wordBreak: "break-all" } }, p) : p);
+function useFaustHide() {
+  const [hide, setHide] = useState(false);
   useEffect(() => {
     const check = async (u) => { if (!u) { setHide(false); return; } const { data } = await supabaseClient.from("profiles").select("role").eq("id", u.id).maybeSingle(); setHide(data?.role === "admin" || data?.role === "instructor"); };
     supabaseClient.auth.getSession().then(({ data }) => check(data?.session?.user));
     const { data: sub } = supabaseClient.auth.onAuthStateChange((_e, s) => check(s?.user));
-    const t = setInterval(() => { const w = document.querySelector(".dos-fab-wrap"); setBot(w ? Math.round(window.innerHeight - w.getBoundingClientRect().top + 8) : 18); }, 700);
-    return () => { sub?.subscription?.unsubscribe(); clearInterval(t); };
+    return () => sub?.subscription?.unsubscribe();
   }, []);
+  return hide;
+}
+function FaustFab() {
+  const hide = useFaustHide();
+  if (hide) return null;
+  return dosH("button", { type: "button", className: "dos-fab-faust", "aria-label": "Faust", title: "Faust — مساعد DOS", onClick: () => window.dispatchEvent(new Event("faust-open")) }, dosH(HandIcon, { s: 24 }));
+}
+const FAUST_LANGS = [["auto", "تلقائي / Auto"], ["العربية", "العربية"], ["English", "English"], ["Deutsch", "Deutsch"]];
+function FaustWidget() {
+  const hide = useFaustHide();
+  const [open, setOpen] = useState(false), [busy, setBusy] = useState(false), [text, setText] = useState(""), [lang, setLang] = useState("auto"), [hasWrap, setHasWrap] = useState(false);
+  const [msgs, setMsgs] = useState([{ role: "model", content: "مرحباً! أنا Faust مساعد أكاديمية DOS 👋 اسألني عن الدورات والأسعار والمواعيد والحجز.\nHello! Ask me about courses, prices and booking. · Hallo! Frag mich zu Kursen, Preisen und Buchung." }]);
+  const sid = useRef(null), endRef = useRef(null), since = useRef(new Date().toISOString()), seen = useRef(new Set());
+  if (!sid.current) { try { sid.current = localStorage.getItem("faust_sid"); } catch (e) {} if (!sid.current) { sid.current = "s" + Math.random().toString(36).slice(2) + Date.now().toString(36); try { localStorage.setItem("faust_sid", sid.current); } catch (e) {} } }
+  const call = (b) => fetch(SUPABASE_URL + "/functions/v1/faust-chat", { method: "POST", headers: { "Content-Type": "application/json", apikey: SUPABASE_ANON_KEY, Authorization: "Bearer " + SUPABASE_ANON_KEY }, body: JSON.stringify({ session: sid.current, ...b }) }).then(r => r.json());
+  useEffect(() => {
+    const f = () => setOpen(true); window.addEventListener("faust-open", f);
+    const t = setInterval(() => setHasWrap(!!document.querySelector(".dos-fab-wrap")), 700);
+    return () => { window.removeEventListener("faust-open", f); clearInterval(t); };
+  }, []);
+  useEffect(() => {
+    if (!open) return undefined;
+    const t = setInterval(async () => { try { const j = await call({ poll: true, since: since.current }); (j.messages || []).forEach(m => { if (seen.current.has(m.id)) return; seen.current.add(m.id); since.current = m.created_at; setMsgs(x => [...x, { role: "admin", content: m.content }]); }); } catch (e) {} }, 4000);
+    return () => clearInterval(t);
+  }, [open]);
   useEffect(() => { endRef.current && endRef.current.scrollIntoView({ behavior: "smooth" }); }, [msgs, open]);
   async function send() {
     const t = text.trim(); if (!t || busy) return;
     setText(""); setBusy(true); setMsgs(m => [...m, { role: "user", content: t }]);
     try {
-      const r = await fetch(SUPABASE_URL + "/functions/v1/faust-chat", { method: "POST", headers: { "Content-Type": "application/json", apikey: SUPABASE_ANON_KEY, Authorization: "Bearer " + SUPABASE_ANON_KEY }, body: JSON.stringify({ session: sid.current, message: t, lang }) });
-      const j = await r.json(); setMsgs(m => [...m, { role: "model", content: j.reply || "عذراً، حدث خطأ." }]);
+      const j = await call({ message: t, lang });
+      if (j.human) setMsgs(m => m.some(x => x.role === "sys") ? m : [...m, { role: "sys", content: "تم إرسال رسالتك إلى الإدارة، وسيردّون عليك هنا قريباً 🙏" }]);
+      else setMsgs(m => [...m, { role: "model", content: j.reply || "عذراً، حدث خطأ." }]);
     } catch (e) { setMsgs(m => [...m, { role: "model", content: "تعذر الاتصال. تحقق من الإنترنت وحاول مجدداً." }]); }
     setBusy(false);
   }
-  if (hide) return dosH("style", null, FAUST_CSS);
+  const sty = { user: { bg: "#C9A24B", c: "#fff", j: "flex-start" }, model: { bg: "#fff", c: "#111", j: "flex-end" }, admin: { bg: "#dcfce7", c: "#14532d", j: "flex-end" }, sys: { bg: "transparent", c: "#888", j: "center" } };
   return dosH(React.Fragment, null, dosH("style", null, FAUST_CSS),
-    !open && dosH("button", { onClick: () => setOpen(true), "aria-label": "Faust", title: "Faust", style: { position: "fixed", bottom: bot, insetInlineEnd: 18, zIndex: 2500, width: 44, height: 44, borderRadius: "50%", background: "#0C0F1D", display: "grid", placeItems: "center", boxShadow: "0 6px 16px rgba(0,0,0,.35)", border: "2px solid #C9A24B" } }, dosH(FistIcon, { s: 24 })),
-    open && dosH("div", { style: { position: "fixed", bottom: 12, insetInlineEnd: 12, zIndex: 2600, width: "min(380px,calc(100vw - 24px))", height: "min(560px,calc(100vh - 24px))", background: "#fff", borderRadius: 18, boxShadow: "0 12px 50px rgba(0,0,0,.35)", display: "flex", flexDirection: "column", overflow: "hidden", fontFamily: "Cairo,sans-serif", direction: "rtl" } },
+    !hide && !open && !hasWrap && dosH("button", { onClick: () => setOpen(true), "aria-label": "Faust", className: "dos-fab-faust", style: { position: "fixed", bottom: 18, insetInlineEnd: 18, zIndex: 2500 } }, dosH(HandIcon, { s: 24 })),
+    !hide && open && dosH("div", { style: { position: "fixed", bottom: 12, insetInlineEnd: 12, zIndex: 2600, width: "min(380px,calc(100vw - 24px))", height: "min(560px,calc(100vh - 24px))", background: "#fff", borderRadius: 18, boxShadow: "0 12px 50px rgba(0,0,0,.35)", display: "flex", flexDirection: "column", overflow: "hidden", fontFamily: "Cairo,sans-serif", direction: "rtl" } },
       dosH("div", { style: { background: "#0C0F1D", color: "#fff", padding: "10px 14px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8 } }, dosH("b", null, "Faust · مساعد DOS"),
         dosH("select", { value: lang, onChange: e => setLang(e.target.value), "aria-label": "Language", style: { background: "#1c2036", color: "#fff", borderRadius: 8, padding: "3px 6px", fontSize: 12 } }, FAUST_LANGS.map(([v, l]) => dosH("option", { key: v, value: v }, l))),
         dosH("button", { onClick: () => setOpen(false), style: { color: "#fff", fontSize: 18 } }, "✕")),
-      dosH("div", { style: { flex: 1, overflow: "auto", padding: 12, background: "#f6f7fb" } }, msgs.map((m, i) => dosH("div", { key: i, style: { display: "flex", justifyContent: m.role === "user" ? "flex-start" : "flex-end", marginBottom: 8 } }, dosH("div", { dir: "auto", style: { maxWidth: "85%", padding: "8px 12px", borderRadius: 14, fontSize: 14, lineHeight: 1.7, whiteSpace: "pre-wrap", background: m.role === "user" ? "#C9A24B" : "#fff", color: m.role === "user" ? "#fff" : "#111", boxShadow: "0 1px 3px rgba(0,0,0,.1)" } }, m.content))), busy && dosH("div", { style: { fontSize: 12, color: "#888" } }, "Faust…"), dosH("div", { ref: endRef })),
+      dosH("div", { style: { flex: 1, overflow: "auto", padding: 12, background: "#f6f7fb" } }, msgs.map((m, i) => { const s = sty[m.role] || sty.model; return dosH("div", { key: i, style: { display: "flex", justifyContent: s.j, marginBottom: 8 } }, dosH("div", { dir: "auto", style: { maxWidth: "85%", padding: m.role === "sys" ? 0 : "8px 12px", borderRadius: 14, fontSize: m.role === "sys" ? 12 : 14, lineHeight: 1.7, whiteSpace: "pre-wrap", background: s.bg, color: s.c, boxShadow: m.role === "sys" ? "none" : "0 1px 3px rgba(0,0,0,.1)" } }, m.role === "admin" && dosH("b", { style: { display: "block", fontSize: 11 } }, "الإدارة"), linkify(m.content))); }), busy && dosH("div", { style: { fontSize: 12, color: "#888" } }, "Faust…"), dosH("div", { ref: endRef })),
       dosH("div", { style: { display: "flex", gap: 6, padding: 10, borderTop: "1px solid #eee" } },
         dosH("input", { value: text, onChange: e => setText(e.target.value), onKeyDown: e => e.key === "Enter" && send(), placeholder: "اكتب رسالتك… / Type here…", maxLength: 800, style: { flex: 1, border: "1px solid #ddd", borderRadius: 12, padding: "8px 12px", fontSize: 14 } }),
         dosH("button", { onClick: send, disabled: busy, style: { background: "#0C0F1D", color: "#fff", borderRadius: 12, padding: "0 16px", fontWeight: 700 } }, "➤"))));
@@ -24914,14 +25084,18 @@ function FLeads() {
         dosH("a", { href: "https://wa.me/" + ph(x.phone), target: "_blank", rel: "noreferrer", style: { ...FA.btn, background: "#22c55e" } }, "واتساب"), dosH("button", { style: { ...FA.btn, background: "#C8283A" }, onClick: () => del(x) }, "حذف")))));
 }
 function FChats() {
-  const [rows, setRows] = useState([]), [sel, setSel] = useState(null);
-  const load = async () => { const { data } = await supabaseClient.from("faust_messages").select("*").order("created_at", { ascending: false }).limit(600); setRows(data || []); };
-  useEffect(() => { load(); }, []);
+  const [rows, setRows] = useState([]), [sel, setSel] = useState(null), [reply, setReply] = useState(""), [msg, setMsg] = useState("");
+  const load = async () => { const { data } = await supabaseClient.from("faust_messages").select("*").order("created_at", { ascending: false }).limit(800); setRows(data || []); };
+  useEffect(() => { load(); const t = setInterval(load, 6000); return () => clearInterval(t); }, []);
   const groups = {}; rows.forEach(r => { (groups[r.session_id] = groups[r.session_id] || []).push(r); });
   const sess = Object.entries(groups);
   const delS = async id => { if (window.confirm("حذف المحادثة؟")) { await supabaseClient.from("faust_messages").delete().eq("session_id", id); setSel(null); load(); } };
-  if (sel) { const th = [...(groups[sel] || [])].reverse(); return dosH("div", null, dosH("div", { style: { display: "flex", gap: 8, marginBottom: 8 } }, dosH("button", { style: FA.btn, onClick: () => setSel(null) }, "← رجوع"), dosH("button", { style: { ...FA.btn, background: "#C8283A" }, onClick: () => delS(sel) }, "حذف المحادثة")), th.map(m => dosH("div", { key: m.id, dir: "auto", style: { ...FA.card, background: m.role === "user" ? "#fff7e0" : "#f1f5f9", whiteSpace: "pre-wrap", fontSize: 13 } }, dosH("small", { style: { color: "#888" } }, m.role === "user" ? "زائر" : "Faust", " · ", new Date(m.created_at).toLocaleString("ar-EG")), dosH("div", null, m.content)))); }
-  return dosH("div", null, !sess.length && dosH("p", { style: { color: "#888" } }, "لا توجد محادثات بعد."), sess.map(([id, ms]) => { const first = [...ms].reverse().find(m => m.role === "user"); return dosH("div", { key: id, onClick: () => setSel(id), style: { ...FA.card, cursor: "pointer" } }, dosH("b", { dir: "auto" }, (first?.content || "…").slice(0, 80)), dosH("div", { style: { fontSize: 11, color: "#888" } }, ms.length + " رسالة · " + new Date(ms[0].created_at).toLocaleString("ar-EG"))); }));
+  const sendR = async () => { const t = reply.trim(); if (!t) return; const { error } = await supabaseClient.from("faust_messages").insert({ session_id: sel, role: "admin", content: t }); if (error) { setMsg("شغّل ملف 08 SQL أولاً: " + error.message); return; } setReply(""); setMsg("✓ أُرسل الرد"); load(); };
+  const lab = { user: "زائر", model: "Faust", admin: "الإدارة" }, bg = { user: "#fff7e0", model: "#f1f5f9", admin: "#dcfce7" };
+  if (sel) { const th = [...(groups[sel] || [])].reverse(); return dosH("div", null, dosH("div", { style: { display: "flex", gap: 8, marginBottom: 8 } }, dosH("button", { style: FA.btn, onClick: () => setSel(null) }, "← رجوع"), dosH("button", { style: { ...FA.btn, background: "#C8283A" }, onClick: () => delS(sel) }, "حذف المحادثة")),
+    th.map(m => dosH("div", { key: m.id, dir: "auto", style: { ...FA.card, background: bg[m.role] || "#fff", whiteSpace: "pre-wrap", fontSize: 13 } }, dosH("small", { style: { color: "#888" } }, lab[m.role] || m.role, " · ", new Date(m.created_at).toLocaleString("ar-EG")), dosH("div", null, linkify(m.content)))),
+    dosH("div", { style: { ...FA.card, position: "sticky", bottom: 0 } }, dosH("textarea", { rows: 3, value: reply, onChange: e => setReply(e.target.value), placeholder: "اكتب ردّ الإدارة (يمكنك وضع روابط الدفع كاملة) — سيظهر للزائر فوراً، ويتوقف Faust عن الرد 30 دقيقة", style: FA.inp }), dosH("div", { style: { display: "flex", gap: 8, marginTop: 6, alignItems: "center" } }, dosH("button", { style: { ...FA.btn, background: "#16a34a" }, onClick: sendR }, "إرسال الرد"), dosH("span", { style: { fontSize: 12, color: "#16a34a" } }, msg)))); }
+  return dosH("div", null, !sess.length && dosH("p", { style: { color: "#888" } }, "لا توجد محادثات بعد."), sess.map(([id, ms]) => { const first = [...ms].reverse().find(m => m.role === "user"), needs = ms[0].role === "user"; return dosH("div", { key: id, onClick: () => setSel(id), style: { ...FA.card, cursor: "pointer", borderColor: needs ? "#C9A24B" : "#e5e7eb" } }, needs && dosH("span", { style: { color: "#C9A24B", fontWeight: 800 } }, "🔔 بانتظار رد · "), dosH("b", { dir: "auto" }, (first?.content || "…").slice(0, 80)), dosH("div", { style: { fontSize: 11, color: "#888" } }, ms.length + " رسالة · " + new Date(ms[0].created_at).toLocaleString("ar-EG"))); }));
 }
 function FSettings() {
   const [fs, setFs] = useState(null), [ag, setAg] = useState(null), [msg, setMsg] = useState("");
@@ -24937,22 +25111,87 @@ function FSettings() {
       dosH("label", { style: { display: "block", fontSize: 13, margin: "8px 0" } }, "نبرة التقرير", dosH("input", { value: ag.tone || "", onChange: e => setAg({ ...ag, tone: e.target.value }), style: FA.inp }))),
     dosH("button", { style: FA.btn, onClick: sv }, "💾 حفظ الإعدادات"), dosH("span", { style: { marginInlineStart: 10, fontSize: 12, color: "#16a34a" } }, msg));
 }
+function printReports(list) {
+  const w = window.open("", "_blank"); if (!w) { window.alert("اسمح بالنوافذ المنبثقة ثم أعد المحاولة"); return; }
+  w.document.write('<html dir="rtl"><head><meta charset="utf-8"><title>تقارير DOS</title><style>@page{size:A4;margin:10mm}body{margin:0;font-family:Tahoma,Arial}.pg{page-break-after:always;padding:6px}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}</style></head><body>' + list.map(r => '<div class="pg">' + (r.html || ('<h3>' + r.person_name + '</h3><p>' + r.body + '</p>')) + '</div>').join("") + "</body></html>");
+  w.document.close(); setTimeout(() => w.print(), 700);
+}
 function FReports() {
   const today = () => new Date().toLocaleDateString("en-CA", { timeZone: "Africa/Cairo" });
   const [d, setD] = useState(today()), [rows, setRows] = useState([]), [msg, setMsg] = useState(""), [view, setView] = useState(null), [busy, setBusy] = useState(false);
   const load = async () => { const { data } = await supabaseClient.from("daily_reports").select("*").eq("report_date", d).order("role").order("person_name"); setRows(data || []); };
   useEffect(() => { load(); }, [d]);
   async function run() { setBusy(true); setMsg("جارٍ التشغيل…"); const { data: ss } = await supabaseClient.auth.getSession(); if (!ss?.session) { setMsg("انتهت جلسة الدخول، سجّل الدخول من جديد"); setBusy(false); return; }
-    const { data, error } = await supabaseClient.functions.invoke("daily-reports", { body: { force: true, date: d }, headers: { Authorization: "Bearer " + ss.session.access_token } }); if (error) { let m = error.message; try { m = (await error.context.json()).error || m; } catch (e) {} setMsg("خطأ: " + m); } else setMsg(`تمت معالجة ${data.processed} وتبقّى ${data.remaining}`); setBusy(false); setTimeout(load, 1500); }
+    const { data, error } = await supabaseClient.functions.invoke("daily-reports", { body: { force: true, date: d }, headers: { Authorization: "Bearer " + ss.session.access_token, "x-user-jwt": ss.session.access_token } }); if (error) { let m = error.message; try { m = (await error.context.json()).error || m; } catch (e) {} setMsg("خطأ: " + m); } else setMsg(`تمت معالجة ${data.processed} وتبقّى ${data.remaining}`); setBusy(false); setTimeout(load, 1500); }
   const st = (k) => rows.filter(r => r.email_status === k || r.whatsapp_status === k).length;
   const lag = rows.filter(r => r.data?.["مقصّر"]);
   const hrs = rows.reduce((t, r) => t + (+r.data?.["ساعات_المذاكرة"] || 0), 0).toFixed(1);
-  return dosH("div", null, dosH("div", { style: { display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginBottom: 10 } }, dosH("input", { type: "date", value: d, onChange: e => setD(e.target.value), style: { ...FA.inp, width: 160 } }), dosH("button", { style: FA.btn, disabled: busy, onClick: run }, "▶ تشغيل الوكيل لهذا اليوم"), dosH("span", { style: { fontSize: 12 } }, msg)),
+  return dosH("div", null, dosH("div", { style: { display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginBottom: 10 } }, dosH("input", { type: "date", value: d, onChange: e => setD(e.target.value), style: { ...FA.inp, width: 160 } }), dosH("button", { style: FA.btn, disabled: busy, onClick: run }, "▶ تشغيل الوكيل لهذا اليوم"), dosH("button", { style: { ...FA.btn, background: "#7c3aed" }, disabled: !rows.length, onClick: () => printReports(rows) }, "📄 PDF لكل التقارير"), dosH("span", { style: { fontSize: 12 } }, msg)),
     dosH("div", { style: { ...FA.card, fontSize: 13 } }, `التقارير: ${rows.length} · إجمالي ساعات المذاكرة: ${hrs} · مقصّرون: ${lag.length} · إيميل مُرسل: ${rows.filter(r => r.email_status === "sent").length} · واتساب مُرسل: ${rows.filter(r => r.whatsapp_status === "sent").length} · فشل: ${rows.filter(r => r.email_status === "failed" || r.whatsapp_status === "failed").length}`),
     lag.length > 0 && dosH("div", { style: { ...FA.card, background: "#fef2f2", fontSize: 13 } }, "⚠️ الطلاب المقصّرون: ", lag.map(r => r.person_name).join("، ")),
-    view && dosH("div", { style: { ...FA.card, background: "#f8fafc", whiteSpace: "pre-wrap", fontSize: 13 } }, dosH("b", null, view.person_name), dosH("div", null, view.body), view.error && dosH("div", { style: { color: "#C8283A", fontSize: 12 } }, view.error), dosH("button", { style: FA.btn, onClick: () => setView(null) }, "إغلاق")),
+    view && dosH("div", { style: { ...FA.card, background: "#f8fafc", whiteSpace: "pre-wrap", fontSize: 13 } }, dosH("b", null, view.person_name), dosH("div", null, view.body), view.error && dosH("div", { style: { color: "#C8283A", fontSize: 12 } }, view.error), dosH("button", { style: { ...FA.btn, background: "#7c3aed", marginInlineEnd: 8 }, onClick: () => printReports([view]) }, "📄 PDF"), dosH("button", { style: FA.btn, onClick: () => setView(null) }, "إغلاق")),
     dosH("div", { style: { overflowX: "auto" } }, dosH("table", { style: { width: "100%", fontSize: 12, textAlign: "center" } }, dosH("tbody", null, dosH("tr", { style: { background: "#f1f5f9" } }, ["الاسم", "الدور", "ساعات", "مقصّر", "إيميل", "واتساب", ""].map(h => dosH("th", { key: h, style: { padding: 6 } }, h))),
-      rows.map(r => dosH("tr", { key: r.id, style: { borderBottom: "1px solid #eee" } }, dosH("td", { style: { padding: 6, textAlign: "right" } }, r.person_name), dosH("td", null, r.role === "student" ? "طالب" : "محاضر"), dosH("td", null, r.data?.["ساعات_المذاكرة"] ?? "—"), dosH("td", null, r.data?.["مقصّر"] ? "⚠️" : ""), dosH("td", null, r.email_status), dosH("td", null, r.whatsapp_status), dosH("td", null, dosH("button", { style: { color: "#2563eb" }, onClick: () => setView(r) }, "عرض"), r.wa_link && dosH("a", { href: r.wa_link, target: "_blank", rel: "noreferrer", style: { color: "#16a34a", marginInlineStart: 8 } }, "واتساب"))))))));
+      rows.map(r => dosH("tr", { key: r.id, style: { borderBottom: "1px solid #eee" } }, dosH("td", { style: { padding: 6, textAlign: "right" } }, r.person_name), dosH("td", null, r.role === "student" ? "طالب" : "محاضر"), dosH("td", null, r.data?.["ساعات_المذاكرة"] ?? "—"), dosH("td", null, r.data?.["مقصّر"] ? "⚠️" : ""), dosH("td", null, r.email_status), dosH("td", null, r.whatsapp_status), dosH("td", null, dosH("button", { style: { color: "#2563eb" }, onClick: () => setView(r) }, "عرض"), dosH("button", { style: { color: "#7c3aed", marginInlineStart: 8 }, onClick: () => printReports([r]) }, "PDF"), r.wa_link && dosH("a", { href: r.wa_link, target: "_blank", rel: "noreferrer", style: { color: "#16a34a", marginInlineStart: 8 } }, "واتساب"))))))));
+}
+async function callFn(name, body) {
+  const { data: ss } = await supabaseClient.auth.getSession();
+  if (!ss?.session) return { error: { message: "انتهت جلسة الدخول، سجّل الدخول من جديد" } };
+  const r = await supabaseClient.functions.invoke(name, { body, headers: { Authorization: "Bearer " + ss.session.access_token, "x-user-jwt": ss.session.access_token } });
+  if (r.error) { let m = r.error.message; try { m = (await r.error.context.json()).error || m; } catch (e) {} return { error: { message: m } }; }
+  return r;
+}
+const TRACKS = { general: "عادية", intensive: "مكثفة", private: "خاصة مكثفة", conversation: "محادثة", kids: "أطفال", curricula: "مناهج" };
+const CST = { open: "متاحة للحجز", soon: "قريباً", full: "مكتملة", closed: "مغلقة" };
+function FCourses() {
+  const [rows, setRows] = useState([]), [tr, setTr] = useState("general"), [msg, setMsg] = useState(""), [pct, setPct] = useState("");
+  const load = async () => { const { data, error } = await supabaseClient.from("faust_courses").select("*").order("sort"); setRows(data || []); if (error) setMsg("شغّل ملف 08 SQL أولاً: " + error.message); };
+  useEffect(() => { load(); }, []);
+  const upd = (id, f, v) => setRows(r => r.map(x => x.id === id ? { ...x, [f]: v } : x));
+  const save = async x => { const { error } = await supabaseClient.from("faust_courses").update({ title: x.title, level: x.level, part: x.part, material: x.material, duration: x.duration, group_size: x.group_size, price: x.price === "" || x.price == null ? null : +x.price, currency: x.currency, next_start: x.next_start, schedule: x.schedule, status: x.status, details: x.details, active: x.active, sort: +x.sort || 0 }).eq("id", x.id); setMsg(error ? error.message : "✓ تم حفظ " + x.title); };
+  const add = async () => { const { error } = await supabaseClient.from("faust_courses").insert({ track: tr, title: "دورة جديدة", status: "open", sort: 999 }); error ? setMsg(error.message) : load(); };
+  const del = async x => { if (!window.confirm("حذف «" + x.title + "»؟")) return; await supabaseClient.from("faust_courses").delete().eq("id", x.id); load(); };
+  const bulk = async () => { const p = parseFloat(pct); if (!p) return; if (!window.confirm(`تغيير أسعار كل دورات «${TRACKS[tr]}» بنسبة ${p}%؟`)) return; for (const x of list) if (x.price != null && x.price !== "") await supabaseClient.from("faust_courses").update({ price: Math.round(x.price * (1 + p / 100) / 50) * 50 }).eq("id", x.id); setPct(""); load(); setMsg("✓ تم تعديل الأسعار (تقريب لأقرب 50)"); };
+  const list = rows.filter(x => x.track === tr);
+  const fld = (x, f, l, w) => dosH("label", { style: { fontSize: 11, color: "#667", flex: w || "1 1 140px" } }, l, dosH("input", { value: x[f] ?? "", onChange: e => upd(x.id, f, e.target.value), style: FA.inp }));
+  return dosH("div", null, dosH("div", { style: { display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 8 } }, Object.entries(TRACKS).map(([k, v]) => dosH("button", { key: k, onClick: () => setTr(k), style: { ...FA.btn, background: tr === k ? "#C9A24B" : "#0C0F1D" } }, v + " (" + rows.filter(x => x.track === k).length + ")"))),
+    dosH("div", { style: { display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginBottom: 10 } }, dosH("button", { style: FA.btn, onClick: add }, "➕ إضافة دورة"), dosH("input", { type: "number", placeholder: "% تغيير الأسعار", value: pct, onChange: e => setPct(e.target.value), style: { ...FA.inp, width: 130 } }), dosH("button", { style: { ...FA.btn, background: "#7c3aed" }, onClick: bulk }, "تطبيق على هذا القسم"), dosH("span", { style: { fontSize: 12, color: "#16a34a" } }, msg)),
+    list.map(x => dosH("div", { key: x.id, style: { ...FA.card, opacity: x.active ? 1 : .55 } },
+      dosH("div", { style: { display: "flex", gap: 6, flexWrap: "wrap" } }, fld(x, "title", "اسم الدورة", "2 1 220px"), fld(x, "price", "السعر"), fld(x, "currency", "العملة", "0 1 70px"),
+        dosH("label", { style: { fontSize: 11, color: "#667", flex: "1 1 130px" } }, "الحالة", dosH("select", { value: x.status, onChange: e => upd(x.id, "status", e.target.value), style: FA.inp }, Object.entries(CST).map(([k, v]) => dosH("option", { key: k, value: k }, v)))),
+        fld(x, "next_start", "موعد البدء القادم"), fld(x, "schedule", "المواعيد/الجدول", "2 1 220px"), fld(x, "group_size", "عدد الطلاب"), fld(x, "duration", "المدة", "2 1 220px"), fld(x, "material", "المادة (الكتاب)")),
+      dosH("textarea", { rows: 2, value: x.details || "", onChange: e => upd(x.id, "details", e.target.value), placeholder: "تفاصيل إضافية", style: { ...FA.inp, marginTop: 6 } }),
+      dosH("div", { style: { display: "flex", gap: 10, marginTop: 6, alignItems: "center" } }, dosH("label", { style: { fontSize: 13 } }, dosH("input", { type: "checkbox", checked: !!x.active, onChange: e => upd(x.id, "active", e.target.checked) }), " ظاهرة لـ Faust"), dosH("button", { style: FA.btn, onClick: () => save(x) }, "حفظ"), dosH("button", { style: { ...FA.btn, background: "#C8283A" }, onClick: () => del(x) }, "حذف")))));
+}
+function FBilling() {
+  const [cfg, setCfg] = useState(null), [stu, setStu] = useState([]), [nt, setNt] = useState({}), [log, setLog] = useState([]), [q, setQ] = useState(""), [f, setF] = useState("all"), [msg, setMsg] = useState(""), [busy, setBusy] = useState(false);
+  const fin = s => { const total = +s.total || 0, paid = +s.paid || 0, dv = +s.discount || 0, tx = +s.tax_percent || 0; const disc = (s.discount_type || "percent") === "amount" ? Math.min(dv, total) : Math.round(total * dv / 100); const after = Math.max(total - disc, 0); const final = after + Math.round(after * tx / 100); return { final, balance: final - paid }; };
+  const load = async () => {
+    const [a, s, p, n, l] = await Promise.all([supabaseClient.from("agent_settings").select("*").eq("id", 1).maybeSingle(), supabaseClient.from("students").select("profile_id,total,paid,discount,discount_type,tax_percent,status,currency,group_name"), supabaseClient.from("profiles").select("id,full_name,name_ar,contact_email"), supabaseClient.from("student_notify").select("*"), supabaseClient.from("billing_log").select("*").order("created_at", { ascending: false }).limit(30)]);
+    setCfg(a.data); const P = {}; (p.data || []).forEach(x => P[x.id] = x);
+    setStu((s.data || []).filter(x => x.profile_id).map(x => ({ ...x, name: P[x.profile_id]?.name_ar || P[x.profile_id]?.full_name || "—", email: P[x.profile_id]?.contact_email, ...fin(x) })).sort((x, y) => x.name.localeCompare(y.name, "ar")));
+    const m = {}; (n.data || []).forEach(x => m[x.profile_id] = x); setNt(m); setLog(l.data || []);
+    if (a.error || s.error || n.error) setMsg("شغّل ملف 08 SQL أولاً: " + (a.error || s.error || n.error).message);
+  };
+  useEffect(() => { load(); }, []);
+  const setN = async (ids, field, val) => { const rows = ids.map(id => ({ profile_id: id, reports: nt[id]?.reports !== false, billing: nt[id]?.billing !== false, [field]: val })); const { error } = await supabaseClient.from("student_notify").upsert(rows); if (error) setMsg(error.message); else load(); };
+  const saveCfg = async () => { const { error } = await supabaseClient.from("agent_settings").update({ max_study_hours: +cfg.max_study_hours || 4, skip_inactive: !!cfg.skip_inactive, billing_enabled: !!cfg.billing_enabled, billing_day: +cfg.billing_day || 30, receipts_enabled: !!cfg.receipts_enabled }).eq("id", 1); setMsg(error ? error.message : "✓ تم حفظ الإعدادات"); };
+  const run = async (mode, label) => { if (!window.confirm(label + "؟ سيتم إرسال إيميلات حقيقية.")) return; setBusy(true); setMsg("جارٍ الإرسال…"); const { data, error } = await callFn("student-billing", { mode }); setMsg(error ? "خطأ: " + error.message : "تم — فواتير: " + JSON.stringify(data.invoices) + " · إيصالات: " + JSON.stringify(data.receipts) + (data.baselined != null ? " · تم تسجيل " + data.baselined + " طالب مسدد كخط أساس دون إرسال" : "") + (data.remaining ? " · تبقّى " + data.remaining + " (يكمل تلقائياً)" : "")); setBusy(false); load(); };
+  if (!cfg) return dosH("p", null, msg || "جارٍ التحميل…");
+  const isAct = s => !s.status || s.status === "active";
+  const list = stu.filter(s => s.name.toLowerCase().includes(q.toLowerCase()) && (f === "all" || (f === "debt" && s.balance > 0) || (f === "paid" && s.final > 0 && s.balance <= 0) || (f === "stopped" && !isAct(s))));
+  const set = (k, v) => setCfg({ ...cfg, [k]: v }), chk = (k, l) => dosH("label", { style: { display: "block", fontSize: 13, margin: "3px 0" } }, dosH("input", { type: "checkbox", checked: !!cfg[k], onChange: e => set(k, e.target.checked) }), " " + l);
+  const th = { padding: 6, fontSize: 12, textAlign: "center", borderBottom: "1px solid #eee" };
+  return dosH("div", null, dosH("div", { style: FA.card }, dosH("b", null, "إعدادات التقارير والفواتير"),
+    chk("skip_inactive", "عدم إرسال التقارير للطلاب المتوقفين (الحالة غير نشط)"), chk("billing_enabled", "إرسال الفواتير تلقائياً للمتبقي عليهم مبالغ"), chk("receipts_enabled", "إرسال إيصال السداد مرة واحدة عند السداد الكامل"),
+    dosH("div", { style: { display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center", marginTop: 6 } }, dosH("label", { style: { fontSize: 13 } }, "يوم الفواتير من الشهر ", dosH("input", { type: "number", min: 1, max: 31, value: cfg.billing_day ?? 30, onChange: e => set("billing_day", e.target.value), style: { ...FA.inp, width: 70 } })), dosH("label", { style: { fontSize: 13 } }, "الحد الأقصى لساعات المذاكرة اليومية ", dosH("input", { type: "number", step: "0.5", min: 1, value: cfg.max_study_hours ?? 4, onChange: e => set("max_study_hours", e.target.value), style: { ...FA.inp, width: 70 } })), dosH("button", { style: FA.btn, onClick: saveCfg }, "💾 حفظ")),
+    dosH("div", { style: { display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 } }, dosH("button", { style: { ...FA.btn, background: "#b45309" }, disabled: busy, onClick: () => run("invoices", "إرسال الفواتير الآن للطلاب المتبقي عليهم") }, "📤 إرسال الفواتير الآن"), dosH("button", { style: { ...FA.btn, background: "#16a34a" }, disabled: busy, onClick: () => run("receipts", "إرسال إيصالات السداد الجديدة الآن") }, "🧾 إرسال الإيصالات الآن")),
+    dosH("div", { style: { fontSize: 12, color: "#16a34a", marginTop: 6 } }, msg)),
+    dosH("div", { style: { display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 8, alignItems: "center" } }, dosH("input", { placeholder: "ابحث عن طالب…", value: q, onChange: e => setQ(e.target.value), style: { ...FA.inp, width: 180 } }), [["all", "الكل"], ["debt", "عليهم مبالغ"], ["paid", "مسددون"], ["stopped", "متوقفون"]].map(([k, l]) => dosH("button", { key: k, onClick: () => setF(k), style: { ...FA.btn, background: f === k ? "#C9A24B" : "#0C0F1D" } }, l)),
+      dosH("button", { style: { ...FA.btn, background: "#2563eb" }, onClick: () => setN(list.map(s => s.profile_id), "reports", true) }, "تقارير ✓ للمعروضين"), dosH("button", { style: { ...FA.btn, background: "#64748b" }, onClick: () => setN(list.map(s => s.profile_id), "reports", false) }, "تقارير ✗ للمعروضين")),
+    dosH("div", { style: { overflowX: "auto" } }, dosH("table", { style: { width: "100%" } }, dosH("tbody", null, dosH("tr", { style: { background: "#f1f5f9" } }, ["الطالب", "الحالة", "المستحق", "المتبقي", "يستلم التقارير", "يستلم الفواتير"].map(h => dosH("th", { key: h, style: th }, h))),
+      list.slice(0, 150).map(s => dosH("tr", { key: s.profile_id }, dosH("td", { style: { ...th, textAlign: "right" } }, s.name, !s.email && dosH("small", { style: { color: "#b91c1c" } }, " (بلا إيميل)")), dosH("td", { style: th }, isAct(s) ? "نشط" : s.status), dosH("td", { style: th }, s.final), dosH("td", { style: { ...th, color: s.balance > 0 ? "#b91c1c" : "#15803d", fontWeight: 700 } }, s.balance),
+        dosH("td", { style: th }, dosH("input", { type: "checkbox", checked: nt[s.profile_id]?.reports !== false, onChange: e => setN([s.profile_id], "reports", e.target.checked) })), dosH("td", { style: th }, dosH("input", { type: "checkbox", checked: nt[s.profile_id]?.billing !== false, onChange: e => setN([s.profile_id], "billing", e.target.checked) }))))))),
+    dosH("div", { style: { ...FA.card, marginTop: 12, fontSize: 12 } }, dosH("b", null, "آخر عمليات الفواتير والإيصالات"), log.map(l => dosH("div", { key: l.id }, new Date(l.created_at).toLocaleString("ar-EG"), " · ", l.kind === "invoice" ? "فاتورة" : "إيصال", " · ", l.amount, " · ", l.status, l.error ? " · " + l.error : ""))));
 }
 function FaustAdmin() {
   const [ok, setOk] = useState(false), [open, setOpen] = useState(false), [tab, setTab] = useState("kb");
@@ -24963,12 +25202,12 @@ function FaustAdmin() {
     return () => sub?.subscription?.unsubscribe();
   }, []);
   if (!ok) return null;
-  const tabs = [["kb", "📚 المعرفة"], ["leads", "📝 الحجوزات"], ["chats", "💬 المحادثات"], ["set", "⚙️ الإعدادات"], ["rep", "📊 التقارير"]];
+  const tabs = [["kb", "📚 المعرفة"], ["crs", "🎓 الدورات والأسعار"], ["leads", "📝 الحجوزات"], ["chats", "💬 المحادثات"], ["bill", "👥 المستلمون والفواتير"], ["rep", "📊 التقارير"], ["set", "⚙️ الإعدادات"]];
   return dosH(React.Fragment, null,
     !open && dosH("button", { onClick: () => setOpen(true), title: "لوحة Faust", style: { position: "fixed", bottom: 18, insetInlineEnd: 18, zIndex: 2500, width: 44, height: 44, borderRadius: "50%", background: "#0C0F1D", display: "grid", placeItems: "center", border: "2px solid #C9A24B" } }, dosH(FistIcon, { s: 24 })),
     open && dosH("div", { style: { position: "fixed", inset: 0, zIndex: 3000, background: "#f6f7fb", display: "flex", flexDirection: "column", direction: "rtl", fontFamily: "Cairo,sans-serif" } },
-      dosH("div", { style: { background: "#0C0F1D", color: "#fff", padding: "10px 14px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 } }, dosH("b", null, "لوحة Faust والتقارير"), dosH("div", { style: { display: "flex", gap: 6, flexWrap: "wrap" } }, tabs.map(([k, l]) => dosH("button", { key: k, onClick: () => setTab(k), style: { padding: "5px 12px", borderRadius: 8, fontSize: 13, background: tab === k ? "#C9A24B" : "#1c2036", color: "#fff" } }, l))), dosH("button", { onClick: () => setOpen(false), style: { color: "#fff", fontSize: 20 } }, "✕")),
-      dosH("div", { style: { flex: 1, overflow: "auto", padding: 14, maxWidth: 900, width: "100%", margin: "0 auto" } }, tab === "kb" ? dosH(FKb) : tab === "leads" ? dosH(FLeads) : tab === "chats" ? dosH(FChats) : tab === "set" ? dosH(FSettings) : dosH(FReports))));
+      dosH("div", { style: { background: "#0C0F1D", color: "#fff", padding: "10px 14px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 } }, dosH("b", null, "لوحة Faust والتقارير · v5"), dosH("div", { style: { display: "flex", gap: 6, flexWrap: "wrap" } }, tabs.map(([k, l]) => dosH("button", { key: k, onClick: () => setTab(k), style: { padding: "5px 12px", borderRadius: 8, fontSize: 13, background: tab === k ? "#C9A24B" : "#1c2036", color: "#fff" } }, l))), dosH("button", { onClick: () => setOpen(false), style: { color: "#fff", fontSize: 20 } }, "✕")),
+      dosH("div", { style: { flex: 1, overflow: "auto", padding: 14, maxWidth: 900, width: "100%", margin: "0 auto" } }, tab === "kb" ? dosH(FKb) : tab === "crs" ? dosH(FCourses) : tab === "leads" ? dosH(FLeads) : tab === "chats" ? dosH(FChats) : tab === "bill" ? dosH(FBilling) : tab === "set" ? dosH(FSettings) : dosH(FReports))));
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(React.Fragment, null, React.createElement(App), React.createElement(FaustWidget), React.createElement(FaustAdmin)));</script>
